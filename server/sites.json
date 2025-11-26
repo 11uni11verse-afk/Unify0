@@ -1,0 +1,37 @@
+{
+  "PRIORITY_FEEDS": {
+    "The PIE News": "https://thepienews.com/feed/",
+    "Times Higher Education": "https://www.timeshighereducation.com/rss",
+    "Higher Ed Dive": "https://www.highereddive.com/feeds/news/",
+    "Inside Higher Ed": "https://www.insidehighered.com/rss.xml",
+    "Times of India Education": "https://timesofindia.indiatimes.com/education/study-abroad/rssfeeds/",
+    "India Today Education": "https://www.indiatoday.in/education-today/study-abroad/rss.xml",
+    "UKCISA": "https://www.ukcisa.org.uk/rss",
+    "CBC Canada News": "https://www.cbc.ca/cmlink/rss-canada",
+    "Study Australia": "https://www.studyinaustralia.gov.au/rss",
+    "The Guardian Education": "https://www.theguardian.com/education/internationalstudents/rss"
+  },
+  "ADDITIONAL_FEEDS": {
+    "Indian Express Education": "https://indianexpress.com/section/education/feed/",
+    "DAAD Germany": "https://www.daad.de/en/rss/",
+    "Education in Ireland": "https://blog.educationinireland.com/feed/",
+    "Study in Japan": "https://www.studyinjapan.go.jp/en/news/rss",
+    "Study in Korea": "https://www.studyinkorea.go.kr/rss",
+    "The Guardian Australia": "https://www.theguardian.com/australia-news/australian-universities/rss",
+    "Economic Times NRI": "https://economictimes.indiatimes.com/nri/study/rssfeeds/",
+    "The Hindu Education": "https://www.thehindu.com/education/study-abroad/feeder/default.rss",
+    "NDTV World News": "https://feeds.feedburner.com/ndtv/world-news",
+    "Washington Post Education": "https://www.washingtonpost.com/education/feed/",
+    "Yahoo Canada News": "https://ca.news.yahoo.com/rss/",
+    "The Independent UK": "https://www.independent.co.uk/news/uk/home-news/rss",
+    "DW Education": "https://www.dw.com/en/top-stories/education/rss",
+    "Campus France": "https://www.campusfrance.org/en/rss",
+    "NUFFIC Netherlands": "https://www.nuffic.nl/en/news/rss",
+    "Dutch News": "https://www.dutchnews.nl/feed/",
+    "Study in Sweden": "https://www.studyinsweden.se/rss",
+    "Study in Finland": "https://www.studyinfinland.fi/rss",
+    "The Local Denmark": "https://www.thelocal.dk/rss"
+  }
+}
+
+

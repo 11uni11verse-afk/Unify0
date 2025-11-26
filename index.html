@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Basic Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2563eb" />
+    
+    <!-- Primary Meta Tags -->
+    <title>UnifyO - Connect with International Students Worldwide | Find Your Study Abroad Community</title>
+    <meta name="description" content="Join UnifyO - the ultimate platform for international students. Connect with peers from your home country studying abroad. 50+ countries, 500+ universities, 10,000+ students connected." />
+    <meta name="keywords" content="international students, study abroad, student community, connect students, unifyo, global network, university students" />
+    <meta name="author" content="UnifyO" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://unifyo.com/" />
+    <meta property="og:title" content="UnifyO - Connect with International Students Worldwide" />
+    <meta property="og:description" content="Find and connect with international students from your home country studying in your dream destination. Build your global student network today." />
+    <meta property="og:image" content="https://unifyo.com/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@unifyo" />
+    <meta name="twitter:creator" content="@unifyo" />
+    <meta name="twitter:title" content="UnifyO - Connect with International Students Worldwide" />
+    <meta name="twitter:description" content="Find and connect with international students from your home country studying in your dream destination. Build your global student network today." />
+    <meta name="twitter:image" content="https://unifyo.com/twitter-image.jpg" />
+    
+    <!-- Favicon & App Icons -->
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    
+    <!-- Preconnect & Preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "UnifyO",
+      "url": "https://unifyo.com/",
+      "description": "Platform for international students to connect with peers from their home country studying abroad",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://unifyo.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    
+    <!-- Google Analytics (Placeholder) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    
+    <!-- CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Cookie Consent Banner (Placeholder) -->
+    <div id="cookie-consent" style="display: none;">
+      <div class="cookie-banner">
+        <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
+        <button onclick="acceptCookies()">Accept</button>
+        <button onclick="rejectCookies()">Reject</button>
+      </div>
+    </div>
+    
+    <script>
+      function acceptCookies() {
+        document.getElementById('cookie-consent').style.display = 'none';
+        localStorage.setItem('cookiesAccepted', 'true');
+      }
+      
+      function rejectCookies() {
+        document.getElementById('cookie-consent').style.display = 'none';
+        localStorage.setItem('cookiesAccepted', 'false');
+      }
+      
+      if (!localStorage.getItem('cookiesAccepted')) {
+        document.getElementById('cookie-consent').style.display = 'block';
+      }
+    </script>
+  </body>
+</html>
