@@ -10,7 +10,6 @@ import AccessibilityHelper from "./components/AccessibilityHelper";
 import Index from "./pages/Index";
 import Features from "./pages/Features";
 import Guides from "./pages/Guides";
-import News from "./pages/News";
 import HowItWorks from "./pages/HowItWorks";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -18,7 +17,6 @@ import NotFound from "./pages/NotFound";
 import FAQ from "./pages/FAQ";
 import PrivacyPolicy from "./pages/Legal/PrivacyPolicy";
 import TermsOfService from "./pages/Legal/TermsOfService";
-import NewsDetail from "./pages/NewsDetail";
 import SkipToContent from "./components/SkipToContent";
 import CookieBanner from "./components/CookieBanner";
 
@@ -49,8 +47,6 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/features" element={<Features />} />
             <Route path="/guides" element={<Guides />} />
-            <Route path="/news" element={<News />} />
-            <Route path="/news/:id" element={<NewsDetail />} />
             <Route path="/how-it-works" element={<HowItWorks />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />

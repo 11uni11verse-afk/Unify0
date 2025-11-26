@@ -1,24 +1,12 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { SEO } from "@/components/SEO";
 import { Shield, Lock, Eye, Database, Mail, Globe, UserCheck, AlertCircle } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 
 const PrivacyPolicy = () => {
   return (
     <div className="min-h-screen bg-background">
-      <SEO 
-        title="Privacy Policy"
-        description="Read our Privacy Policy to understand how UnifyO collects, uses, and protects your personal information."
-        url="https://unify0.com/privacy"
-        keywords={[
-          "unifyo privacy policy",
-          "student data protection",
-          "app privacy",
-          "user data security"
-        ]}
-      />
       <Navbar />
       
       {/* Hero Section */}

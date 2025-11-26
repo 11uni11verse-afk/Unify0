@@ -39,18 +39,13 @@ const Navbar = () => {
            style={{ opacity: scrolled ? 1 : 0 }} />
       <div className="container-fluid">
         <div className="flex justify-between items-center h-16 sm:h-18">
-          <Link to="/" className="flex items-center space-x-3 group relative">
-            <div className="group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 ease-out">
-              <UnifyOLogo size={48} animated={false} className="drop-shadow-xl" />
+          <Link to="/" className="flex items-center space-x-2.5 group relative">
+            <div className="group-hover:scale-105 transition-transform duration-300">
+              <UnifyOLogo size={42} className="shadow-md" />
             </div>
-            <div className="flex flex-col leading-none">
-              <span className="text-2xl font-black tracking-tight bg-gradient-to-r from-primary-600 via-secondary-600 to-primary-600 bg-clip-text text-transparent bg-[length:200%_auto] group-hover:bg-[position:100%_0] transition-all duration-700">
-                Unify<span className="inline-block group-hover:rotate-12 transition-transform duration-500">O</span>
-              </span>
-              <span className="text-[10px] font-semibold tracking-[0.2em] text-neutral-500 uppercase mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Connect Globally
-              </span>
-            </div>
+            <span className="text-xl font-bold tracking-tight text-[#1a7bb9] group-hover:text-[#1565a0] transition-colors">
+              UnifyO
+            </span>
           </Link>
 
           {/* Desktop Menu - Right aligned */}
@@ -66,9 +61,6 @@ const Navbar = () => {
             </Link>
             <Link to="/guides" className={`px-3 py-2 transition-all duration-200 rounded-md ${isActive('/guides') ? 'text-primary font-semibold bg-primary-50' : 'text-foreground hover:text-primary hover:bg-neutral-50'}`}>
               Guides
-            </Link>
-            <Link to="/news" className={`px-3 py-2 transition-all duration-200 rounded-md ${isActive('/news') ? 'text-primary font-semibold bg-primary-50' : 'text-foreground hover:text-primary hover:bg-neutral-50'}`}>
-              News
             </Link>
             <Link to="/about" className={`px-3 py-2 transition-all duration-200 rounded-md ${isActive('/about') ? 'text-primary font-semibold bg-primary-50' : 'text-foreground hover:text-primary hover:bg-neutral-50'}`}>
               About
@@ -129,13 +121,6 @@ const Navbar = () => {
               onClick={() => setIsOpen(false)}
             >
               Guides
-            </Link>
-            <Link
-              to="/news"
-              className={`block px-4 py-3 rounded-lg transition-colors min-h-[48px] flex items-center ${isActive('/news') ? 'bg-primary/10 text-primary font-semibold' : 'text-foreground hover:bg-muted'}`}
-              onClick={() => setIsOpen(false)}
-            >
-              News
             </Link>
             <Link
               to="/about"

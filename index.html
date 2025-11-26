@@ -32,7 +32,10 @@
     <meta name="twitter:image" content="https://unifyo.com/twitter-image.jpg" />
     
     <!-- Favicon & App Icons -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     
     <!-- Preconnect & Preload -->
@@ -56,7 +59,10 @@
     }
     </script>
     
-    <!-- Google Analytics (Placeholder) -->
+    <!-- Google Analytics -->
+    <!-- TODO: Replace GA_MEASUREMENT_ID with your actual Measurement ID (G-XXXXXXXXXX) -->
+    <!-- Get it from: Google Analytics → Admin → Data Streams → Web Stream -->
+    <!-- Or set VITE_GA_ID in .env file and update this script to use it -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
     <script>
       window.dataLayer = window.dataLayer || [];

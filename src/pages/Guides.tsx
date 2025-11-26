@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { SEO } from "@/components/SEO";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -160,20 +159,6 @@ const Guides = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <SEO 
-        title="Free Study Abroad Guides & Checklists"
-        description="Download free, comprehensive guides for student visas, accommodation, scholarships, and pre-departure checklists for 15+ countries."
-        url="https://unify0.com/guides"
-        keywords={[
-          "study abroad checklist",
-          "student visa guide",
-          "international student housing",
-          "study abroad scholarships",
-          "pre-departure checklist",
-          "student accommodation guide",
-          "study abroad resources"
-        ]}
-      />
       <Navbar />
       
       {/* Hero Section - Visually Appealing */}
@@ -185,7 +170,7 @@ const Guides = () => {
         
         <div className="container-fluid content-width-xl relative z-10 container-px">
           <Breadcrumbs items={[{ label: "Guides" }]} />
-
+          
           <div className="mt-4 max-w-4xl">
             <ScrollReveal direction="up">
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-4 leading-tight">
@@ -204,95 +189,95 @@ const Guides = () => {
       {!selectedOrigin && (
         <section className="section-py layer-shade-1">
           <div className="container-fluid content-width-xl container-px">
-            <ScrollReveal direction="up">
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
-                <div className="space-y-6">
-                  <div className="flex items-center gap-2">
-                    <Users className="w-6 h-6 text-primary" />
-                    <Badge variant="secondary" className="text-xs">Community Feature</Badge>
+              <ScrollReveal direction="up">
+                <div className="grid lg:grid-cols-2 gap-12 items-center">
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-2">
+                      <Users className="w-6 h-6 text-primary" />
+                      <Badge variant="secondary" className="text-xs">Community Feature</Badge>
+                    </div>
+                    <h2 className="text-3xl sm:text-4xl font-bold">
+                      Discuss these guides with peers directly in the app
+                    </h2>
+                    <p className="text-lg text-neutral-600 leading-relaxed">
+                      Have questions about a guide? Want to share your own tips? Join community discussions where students help each other navigate the study abroad journey.
+                    </p>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <CheckSquare className="w-3 h-3 text-primary" />
+                        </div>
+                        <span className="text-neutral-700">Ask questions about specific guides</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <CheckSquare className="w-3 h-3 text-primary" />
+                        </div>
+                        <span className="text-neutral-700">Share your own experiences and tips</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <CheckSquare className="w-3 h-3 text-primary" />
+                        </div>
+                        <span className="text-neutral-700">Get real-time help from students who've done it</span>
+                      </li>
+                    </ul>
+                    <Button 
+                      size="lg"
+                      variant="accent"
+                      onClick={() => window.location.href = '/#waitlist'}
+                    >
+                      Join the Community
+                      <ArrowLeft className="w-4 h-4 ml-2 rotate-180" />
+                    </Button>
                   </div>
-                  <h2 className="text-3xl sm:text-4xl font-bold">
-                    Discuss these guides with peers directly in the app
-                  </h2>
-                  <p className="text-lg text-neutral-600 leading-relaxed">
-                    Have questions about a guide? Want to share your own tips? Join community discussions where students help each other navigate the study abroad journey.
-                  </p>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <CheckSquare className="w-3 h-3 text-primary" />
-                      </div>
-                      <span className="text-neutral-700">Ask questions about specific guides</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <CheckSquare className="w-3 h-3 text-primary" />
-                      </div>
-                      <span className="text-neutral-700">Share your own experiences and tips</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <CheckSquare className="w-3 h-3 text-primary" />
-                      </div>
-                      <span className="text-neutral-700">Get real-time help from students who've done it</span>
-                    </li>
-                  </ul>
-                  <Button 
-                    size="lg"
-                    variant="accent"
-                    onClick={() => window.location.href = '/#waitlist'}
-                  >
-                    Join the Community
-                    <ArrowLeft className="w-4 h-4 ml-2 rotate-180" />
-                  </Button>
+                  
+                  <div className="relative">
+                    <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 rounded-3xl blur-2xl"></div>
+                    <AppMockupFrame device="phone" className="relative">
+                      <ChatPreview 
+                        messages={[
+                          {
+                            id: "1",
+                            sender: "Ananya",
+                            country: "India",
+                            flag: "🇮🇳",
+                            message: "Just used the Canada visa guide! Super helpful 🙌",
+                            time: "2:15 PM",
+                            isSent: false,
+                          },
+                          {
+                            id: "2",
+                            sender: "You",
+                            country: "India",
+                            flag: "🇮🇳",
+                            message: "That's great! Did you need the biometrics letter?",
+                            time: "2:16 PM",
+                            isSent: true,
+                          },
+                          {
+                            id: "3",
+                            sender: "Ananya",
+                            country: "India",
+                            flag: "🇮🇳",
+                            message: "Yes! The checklist in the guide covered everything",
+                            time: "2:17 PM",
+                            isSent: false,
+                          },
+                        ]}
+                        showTyping={false}
+                      />
+                    </AppMockupFrame>
+                  </div>
                 </div>
-                
-                <div className="relative">
-                  <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 rounded-3xl blur-2xl"></div>
-                  <AppMockupFrame device="phone" className="relative">
-                    <ChatPreview 
-                      messages={[
-                        {
-                          id: "1",
-                          sender: "Ananya",
-                          country: "India",
-                          flag: "🇮🇳",
-                          message: "Just used the Canada visa guide! Super helpful 🙌",
-                          time: "2:15 PM",
-                          isSent: false,
-                        },
-                        {
-                          id: "2",
-                          sender: "You",
-                          country: "India",
-                          flag: "🇮🇳",
-                          message: "That's great! Did you need the biometrics letter?",
-                          time: "2:16 PM",
-                          isSent: true,
-                        },
-                        {
-                          id: "3",
-                          sender: "Ananya",
-                          country: "India",
-                          flag: "🇮🇳",
-                          message: "Yes! The checklist in the guide covered everything",
-                          time: "2:17 PM",
-                          isSent: false,
-                        },
-                      ]}
-                      showTyping={false}
-                    />
-                  </AppMockupFrame>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
+              </ScrollReveal>
+            </div>
+          </section>
       )}
 
       {/* Guide Types - Visually Appealing Grid */}
       {!selectedOrigin && (
-        <section className="section-py bg-white">
+        <section className="section-py layer-shade-2">
           <div className="container-fluid content-width-xl container-px">
             <ScrollReveal direction="up">
               <div className="text-center mb-10">
@@ -335,38 +320,38 @@ const Guides = () => {
         </section>
       )}
 
-      {/* Origin Selection */}
-      {!selectedOrigin && (
+          {/* Origin Selection */}
+          {!selectedOrigin && (
         <section className="section-py layer-shade-1">
           <div className="container-fluid content-width-xl container-px">
-            <ScrollReveal direction="up">
-              <div className="text-center mb-8">
-                <h2 className="text-3xl sm:text-4xl font-bold mb-2">Select Your Origin Country</h2>
-                <p className="text-neutral-600">Choose where you're starting your journey from</p>
-              </div>
-            </ScrollReveal>
-            <div className="flex justify-center">
-              <ScrollReveal direction="up" delay={100}>
-                <Card 
-                  className="group cursor-pointer border-2 border-neutral-200 hover:border-primary hover:shadow-xl transition-all duration-300 w-full max-w-sm overflow-hidden relative"
-                  onClick={() => setSelectedOrigin("IN")}
-                >
+              <ScrollReveal direction="up">
+                <div className="text-center mb-8">
+                  <h2 className="text-3xl sm:text-4xl font-bold mb-2">Select Your Origin Country</h2>
+                  <p className="text-neutral-600">Choose where you're starting your journey from</p>
+                </div>
+              </ScrollReveal>
+              <div className="flex justify-center">
+                <ScrollReveal direction="up" delay={100}>
+                  <Card 
+                    className="group cursor-pointer border-2 border-neutral-200 hover:border-primary hover:shadow-xl transition-all duration-300 w-full max-w-sm overflow-hidden relative"
+                    onClick={() => setSelectedOrigin("IN")}
+                  >
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <CardContent className="p-8 text-center relative z-10">
                     <div className="text-7xl mb-4 group-hover:scale-110 transition-transform duration-300">🇮🇳</div>
                     <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">India</h3>
                     <p className="text-neutral-500 text-sm">Coming soon: More countries</p>
-                  </CardContent>
-                </Card>
-              </ScrollReveal>
+                    </CardContent>
+                  </Card>
+                </ScrollReveal>
+              </div>
             </div>
-          </div>
         </section>
       )}
 
       {/* Why Guides Matter - Visually Appealing Section */}
       {!selectedOrigin && (
-        <section className="section-py layer-shade-1 relative overflow-hidden">
+        <section className="section-py layer-shade-2 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary-100/30 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary-100/30 rounded-full blur-3xl"></div>
           
@@ -381,10 +366,10 @@ const Guides = () => {
             </ScrollReveal>
           </div>
         </section>
-      )}
-      
-      {/* Destination Selection */}
-      {selectedOrigin && !selectedDestination && (
+          )}
+
+          {/* Destination Selection */}
+          {selectedOrigin && !selectedDestination && (
         <section className="section-py bg-white">
           <div className="container-fluid content-width-xl container-px">
             <div className="py-8 border-t border-neutral-200 pt-12 bg-neutral-50/30 rounded-xl px-6">
@@ -420,10 +405,10 @@ const Guides = () => {
             </div>
           </div>
         </section>
-      )}
+          )}
 
-      {/* Guides Display */}
-      {selectedOrigin && selectedDestination && (
+          {/* Guides Display */}
+          {selectedOrigin && selectedDestination && (
         <section className="section-py bg-white">
           <div className="container-fluid content-width-xl container-px">
             <div className="py-8 border-t border-neutral-200 pt-12">
@@ -620,8 +605,8 @@ const Guides = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+        </div>
+      </section>
       )}
 
       {/* Preview Dialog */}

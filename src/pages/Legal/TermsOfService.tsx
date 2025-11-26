@@ -1,24 +1,12 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { SEO } from "@/components/SEO";
 import { FileText, Shield, AlertTriangle, Users, Ban, Scale, Globe, CheckCircle } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 
 const TermsOfService = () => {
   return (
     <div className="min-h-screen bg-background">
-      <SEO 
-        title="Terms of Service"
-        description="Read our Terms of Service to understand the rules and regulations for using UnifyO."
-        url="https://unify0.com/terms"
-        keywords={[
-          "unifyo terms",
-          "app terms of service",
-          "user agreement",
-          "student platform rules"
-        ]}
-      />
       <Navbar />
       
       {/* Hero Section */}

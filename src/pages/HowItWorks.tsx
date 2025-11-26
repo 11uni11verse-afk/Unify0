@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check, Users, Globe, MessageCircle, Zap, UserPlus } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -91,18 +90,6 @@ const HowItWorks = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <SEO 
-        title="How It Works"
-        description="Four simple steps to your global network. Create a profile, get matched, join communities, and stay connected."
-        url="https://unify0.com/how-it-works"
-        keywords={[
-          "how unifyo works",
-          "study abroad matching",
-          "connect with students steps",
-          "international student community app",
-          "student networking process"
-        ]}
-      />
       <Navbar />
       
       {/* Hero Section - Editorial Style matching About page */}
@@ -172,8 +159,8 @@ const HowItWorks = () => {
                           {/* Step number badge */}
                           <div className="relative flex-shrink-0">
                             <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${colors.gradient} flex items-center justify-center text-white font-bold text-2xl shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
-                              {step.number}
-                            </div>
+                          {step.number}
+                        </div>
                             {/* Pulse ring on hover */}
                             <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${colors.gradient} opacity-0 group-hover:opacity-30 group-hover:scale-125 transition-all duration-500`}></div>
                           </div>
@@ -183,22 +170,22 @@ const HowItWorks = () => {
                               {step.title}
                             </h3>
                             <p className="text-neutral-600 leading-relaxed mb-5 text-base">
-                              {step.description}
-                            </p>
-                            
+                            {step.description}
+                          </p>
+                          
                             {/* Features List with enhanced styling */}
                             <div className="space-y-3">
-                              {step.features.map((feature, idx) => (
+                            {step.features.map((feature, idx) => (
                                 <div key={idx} className="flex items-start gap-3 text-sm text-neutral-700 group/item">
                                   <div className={`w-5 h-5 rounded-lg bg-gradient-to-br ${colors.gradient} flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:scale-110 transition-transform duration-300`}>
                                     <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
                                   </div>
                                   <span className="leading-relaxed">{feature}</span>
-                                </div>
-                              ))}
-                            </div>
+                              </div>
+                            ))}
                           </div>
-                          
+                        </div>
+                        
                           {/* Icon on right - enhanced */}
                           <div className="hidden lg:block relative flex-shrink-0">
                             <div className={`w-24 h-24 rounded-2xl bg-gradient-to-br ${colors.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500`}>
@@ -227,7 +214,7 @@ const HowItWorks = () => {
       </section>
 
       {/* Benefits Section - Magazine Grid matching About page */}
-      <section className="section-py bg-white">
+      <section className="section-py layer-shade-2">
         <div className="container-fluid content-width-lg container-px">
           <ScrollReveal direction="up">
             <div className="text-center mb-16">
@@ -276,15 +263,15 @@ const HowItWorks = () => {
                         {/* Icon container with gradient background */}
                         <div className={`w-16 h-16 bg-gradient-to-br ${benefit.gradient} rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
                           <Icon className="w-8 h-8 text-white" />
-                        </div>
+                      </div>
                         
                         <h3 className="text-2xl font-bold mb-4 group-hover:text-primary-600 transition-colors duration-300">
                           {benefit.title}
                         </h3>
                         
-                        <p className="text-neutral-600 leading-relaxed">
-                          {benefit.description}
-                        </p>
+                      <p className="text-neutral-600 leading-relaxed">
+                        {benefit.description}
+                      </p>
                       </div>
                       
                       {/* Decorative corner element */}

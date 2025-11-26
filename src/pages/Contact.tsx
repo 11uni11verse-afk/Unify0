@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { SEO } from "@/components/SEO";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Clock, MapPin, Linkedin, Twitter, Instagram, Facebook } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -86,17 +85,6 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <SEO 
-        title="Contact Us"
-        description="Get in touch with the UnifyO team. We're here to help with any questions about our international student community platform."
-        url="https://unify0.com/contact"
-        keywords={[
-          "contact unifyo",
-          "unifyo support",
-          "international student app help",
-          "study abroad platform contact"
-        ]}
-      />
       <Navbar />
       
       {/* Hero Section - Editorial Style matching About page */}

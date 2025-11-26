@@ -16,6 +16,7 @@ import { trackWaitlistSubmit } from "@/lib/analytics";
 import * as Collapsible from "@radix-ui/react-collapsible";
 import SuccessModal from "@/components/SuccessModal";
 import SuccessAnimation from "@/components/SuccessAnimation";
+import { supabase } from "@/lib/supabase";
 
 const WaitlistForm = () => {
   const { toast } = useToast();
@@ -105,7 +106,31 @@ const WaitlistForm = () => {
         source: 'website_waitlist',
       };
 
-      // Submit to Google Sheets
+      // 1. Submit to Supabase (PostgreSQL)
+      try {
+        const { error: supabaseError } = await supabase
+          .from('waitlist_entries')
+          .insert([
+            {
+              full_name: formData.fullName,
+              email: formData.email,
+              current_country: formData.currentCountry,
+              dream_destination: formData.dreamDestination,
+              field_of_study: formData.fieldOfStudy,
+              current_status: formData.currentStatus,
+              expectations: formData.expectations,
+              source: 'website_waitlist'
+            }
+          ]);
+
+        if (supabaseError) throw supabaseError;
+        console.log('✅ Waitlist submission saved to Supabase');
+      } catch (err) {
+        console.error('⚠️ Supabase submission failed:', err);
+        // Continue to Google Sheets fallback if needed
+      }
+
+      // 2. Submit to Google Sheets (Backup)
       // Using 'no-cors' mode because Google Apps Script Web Apps don't support CORS
       // The response won't be readable, but the data will be saved
       if (GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes('YOUR_SCRIPT_ID')) {
@@ -198,32 +223,75 @@ const WaitlistForm = () => {
   };
 
   return (
-    <div className="w-full max-w-[1100px] mx-auto">
-      <div className="relative bg-gradient-to-br from-white via-primary-50/30 to-secondary-50/30 rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] p-8 sm:p-10 md:p-12 border border-primary-100/50 backdrop-blur-sm overflow-hidden">
+    <div className="w-full">
+      <div className="relative bg-gradient-to-br from-white via-primary-50/40 to-secondary-50/40 rounded-3xl shadow-[0_30px_90px_-30px_rgba(0,0,0,0.2)] border border-primary-100/60 backdrop-blur-sm overflow-hidden">
         {/* Decorative elements */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-primary-200/20 to-secondary-200/20 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-accent-200/20 to-primary-200/20 rounded-full blur-3xl -ml-24 -mb-24 pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-primary-200/25 to-secondary-200/25 rounded-full blur-3xl -mr-[300px] -mt-[300px] pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-accent-200/25 to-primary-200/25 rounded-full blur-3xl -ml-[250px] -mb-[250px] pointer-events-none"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-r from-secondary-200/20 to-accent-200/20 rounded-full blur-3xl pointer-events-none"></div>
         
-        <div className="relative z-10">
-          {/* Header */}
-          <div className="text-center mb-6 sm:mb-8">
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-500 to-secondary-500 mb-3 shadow-lg">
-              <Sparkles className="w-7 h-7 text-white" />
+        <div className="relative z-10 grid lg:grid-cols-2 gap-0">
+          {/* Left Side - Content & Benefits */}
+          <div className="p-8 sm:p-10 md:p-12 lg:p-16 flex flex-col justify-center bg-gradient-to-br from-primary-50/50 via-white/30 to-secondary-50/50 lg:border-r border-primary-100/50">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-secondary-500 mb-6 shadow-lg">
+              <Sparkles className="w-8 h-8 text-white" />
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent leading-tight">
-              Get Early Access
+            
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent leading-tight">
+              Join the Founding Community
             </h2>
-            <p className="text-sm sm:text-base text-neutral-700 font-medium mb-3">
-              Join <span className="text-primary-600 font-bold">1,200+</span> students waiting for launch
+            
+            <p className="text-lg sm:text-xl text-neutral-700 mb-6 leading-relaxed">
+              Whether you're planning to study abroad or already there, be among the first <span className="font-bold text-primary-600">1,200+</span> members.
             </p>
-            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-accent-50 to-orange-50 border-2 border-accent-300 rounded-full shadow-sm hover:shadow-md transition-shadow">
-              <span className="text-xs sm:text-sm font-bold text-accent-700 tracking-wide">Limited to first 5,000 users</span>
+
+            <div className="space-y-4 mb-8">
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 rounded-lg bg-primary-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <CheckCircle2 className="w-4 h-4 text-primary-600" />
+                </div>
+                <div>
+                  <p className="font-semibold text-neutral-900">Exclusive Early Access</p>
+                  <p className="text-sm text-neutral-600">Beta access (Summer 2026) for founding members</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 rounded-lg bg-secondary-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <CheckCircle2 className="w-4 h-4 text-secondary-600" />
+                </div>
+                <div>
+                  <p className="font-semibold text-neutral-900">Lifetime Premium Features</p>
+                  <p className="text-sm text-neutral-600">Free premium forever for founding members</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 rounded-lg bg-accent-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <CheckCircle2 className="w-4 h-4 text-accent-600" />
+                </div>
+                <div>
+                  <p className="font-semibold text-neutral-900">Priority Matching</p>
+                  <p className="text-sm text-neutral-600">Get matched first when we launch</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="inline-flex items-center px-5 py-3 bg-gradient-to-r from-accent-50 to-orange-50 border-2 border-accent-300 rounded-full shadow-sm">
+              <span className="text-sm font-bold text-accent-700 tracking-wide">Limited to first 5,000 users</span>
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Essential Fields - Horizontal Layout */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Right Side - Form */}
+          <div className="p-8 sm:p-10 md:p-12 lg:p-16 bg-white/60 backdrop-blur-sm">
+            <div className="mb-6">
+              <h3 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">Get Early Access</h3>
+              <p className="text-sm text-neutral-600">
+                Join <span className="font-bold text-primary-600">1,200+</span> students waiting for launch
+              </p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-5">
+              {/* Essential Fields - Horizontal Layout */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Full Name Field */}
               <div className="relative group">
                 <Label 
@@ -356,11 +424,11 @@ const WaitlistForm = () => {
                     </div>
 
                     <div className="relative">
-                      <Label htmlFor="dreamDestination" className="flex items-center gap-2 text-sm font-semibold text-neutral-700 mb-2">
+                      <Label htmlFor="dreamDestination" className="flex items-center gap-2 text-sm font-semibold text-neutral-700 mb-2 whitespace-nowrap">
                         <div className="w-5 h-5 rounded-md bg-secondary-50 flex items-center justify-center flex-shrink-0">
                           <Globe className="w-3.5 h-3.5 text-secondary-600" />
                         </div>
-                        <span>Dream Study Destination</span>
+                        <span className="truncate">Dream Study Destination</span>
                       </Label>
                       <Input
                         id="dreamDestination"
@@ -460,19 +528,20 @@ const WaitlistForm = () => {
               )}
             </Button>
 
-            {/* Footer Info */}
-            <div className="space-y-2.5 pt-1">
-              <p className="text-xs sm:text-sm text-neutral-600 text-center">
-                By joining, you agree to receive updates about our launch.
-              </p>
-              <div className="flex items-center justify-center gap-2 text-xs font-medium text-primary-700 bg-primary-50 py-2 px-3 sm:px-4 rounded-xl border border-primary-100">
-                <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
-                <span className="text-center">
-                  <span className="font-bold">What happens next:</span> Instant confirmation → Early access invite → Connect with students
-                </span>
+              {/* Footer Info */}
+              <div className="space-y-2.5 pt-1">
+                <p className="text-xs sm:text-sm text-neutral-600">
+                  By joining, you agree to receive updates about our launch.
+                </p>
+                <div className="flex items-center gap-2 text-xs font-medium text-primary-700 bg-primary-50 py-2 px-3 sm:px-4 rounded-xl border border-primary-100">
+                  <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
+                  <span>
+                    <span className="font-bold">What happens next:</span> Instant confirmation → Early access invite → Connect with students
+                  </span>
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
 

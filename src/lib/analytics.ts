@@ -1,5 +1,8 @@
 // Analytics utility for tracking events
-// Replace G-XXXXXXXXXX with your actual Google Analytics ID
+// Get Measurement ID from environment variable or use placeholder
+// Set VITE_GA_ID in your .env file or update index.html directly
+
+const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_ID || 'GA_MEASUREMENT_ID';
 
 declare global {
   interface Window {
@@ -23,8 +26,8 @@ export const trackEvent = (eventName: string, params?: Record<string, any>) => {
 };
 
 export const trackPageView = (url: string) => {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('config', 'G-XXXXXXXXXX', {
+  if (typeof window !== 'undefined' && window.gtag && GA_MEASUREMENT_ID !== 'GA_MEASUREMENT_ID') {
+    window.gtag('config', GA_MEASUREMENT_ID, {
       page_path: url,
     });
   }

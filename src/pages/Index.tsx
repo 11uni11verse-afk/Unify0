@@ -6,7 +6,7 @@ import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { 
   Users, MessageCircle, Globe2, BookOpen, Heart, Sparkles, ArrowRight, 
-  Shield, MapPin, Zap, CheckCircle2, Star, GraduationCap, Lock, TrendingUp
+  Shield, MapPin, Zap, CheckCircle2, Star, GraduationCap, Lock, TrendingUp, X, UserPlus
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { trackCTAClick } from "@/lib/analytics";
@@ -17,6 +17,10 @@ import { SignUpDecorations, MatchingDecorations, ConnectDecorations } from "@/co
 import ParallaxSection from "@/components/ParallaxSection";
 import ScrollRevealEnhanced from "@/components/ScrollRevealEnhanced";
 import AnimatedBadge from "@/components/AnimatedBadge";
+import AppMockupFrame from "@/components/social/AppMockupFrame";
+import ChatPreview from "@/components/social/ChatPreview";
+import StudentProfileCard from "@/components/StudentProfileCard";
+import { Badge } from "@/components/ui/badge";
 
 // Authentic, aspirational imagery (still good to show what it WILL be like)
 const heroImage = "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&h=1000&fit=crop&q=90"; 
@@ -26,42 +30,12 @@ const Index = () => {
     document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "UnifyO",
-    "applicationCategory": "SocialNetworkingApplication",
-    "operatingSystem": "Web",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "description": "The ultimate platform for international students to connect with peers from their home country studying abroad.",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "ratingCount": "1200"
-    }
-  };
-
   return (
     <div className="min-h-screen bg-background font-body overflow-x-hidden selection:bg-primary-200">
       <SEO 
         title="UnifyO | Find Your Community Abroad"
         description="The upcoming social network for international students. Join the waitlist to connect with peers from your home country."
-        url="https://unify0.com"
-        keywords={[
-          "international student community",
-          "study abroad social network",
-          "find roommates abroad",
-          "student networking app",
-          "pre-departure connection",
-          "study abroad advice",
-          "international student support",
-          "prospective student network"
-        ]}
-        structuredData={structuredData}
+        url="https://unifyo.com"
       />
       <Navbar />
       
@@ -88,29 +62,10 @@ const Index = () => {
                 Whether you're planning to study abroad or already there, connect with students from your home city. Get advice, find roommates, and build your support network before you even book your flight.
               </p>
 
-              {/* Waitlist Social Proof */}
-              <div className="mb-6 p-4 bg-white/50 backdrop-blur-sm rounded-xl border border-neutral-200 inline-flex items-center gap-3 shadow-sm">
-                <AvatarStack
-                  avatars={[
-                    { fallback: "PR" },
-                    { fallback: "RK" },
-                    { fallback: "AN" },
-                    { fallback: "SK" },
-                    { fallback: "MJ" },
-                  ]}
-                  max={5}
-                  size="sm"
-                />
-                <div className="text-sm">
-                  <p className="font-semibold text-neutral-900">Join the waitlist</p>
-                  <p className="text-neutral-600">Be among the first 1,000 members</p>
-                </div>
-              </div>
-              
               <div className="flex flex-col sm:flex-row gap-4 items-start">
                 <Button 
                   size="lg" 
-                  className="h-14 px-8 text-base font-semibold rounded-lg btn-gradient text-white w-full sm:w-auto group"
+                  className="h-14 px-8 text-base font-semibold rounded-lg btn-gradient text-white w-full sm:w-auto group shadow-[0_22px_55px_-22px_rgba(248,113,113,0.9)] hover:shadow-[0_26px_70px_-26px_rgba(248,113,113,1)] transition-shadow"
                   onClick={() => {
                     trackCTAClick('hero', 'join_waitlist');
                     scrollToWaitlist();
@@ -134,120 +89,364 @@ const Index = () => {
         </div>
       </section>
 
-      {/* HOW IT WORKS - Illustrated 3 Steps */}
-      <section className="section-py layer-shade-1">
-        <div className="container-fluid container-px content-width-lg">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">Connect before you go, thrive when you arrive</h2>
-            <p className="text-lg text-neutral-600">For students planning to study abroad and those already living the dream</p>
+      {/* HOW IT WORKS - App Experience Journey */}
+      <section className="section-py layer-shade-1 relative overflow-hidden">
+        {/* Ambient Background Gradient - Subtle & Premium */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+          <div className="absolute top-[10%] right-[-10%] w-[600px] h-[600px] bg-primary-100/20 rounded-full blur-[100px]" />
+          <div className="absolute bottom-[10%] left-[-10%] w-[600px] h-[600px] bg-secondary-100/20 rounded-full blur-[100px]" />
+        </div>
+
+        <div className="container-fluid container-px content-width-lg relative z-10">
+          <div className="text-center mb-24 md:mb-32">
+            <ScrollRevealEnhanced>
+              <div className="inline-flex items-center gap-2 px-5 py-2 bg-white border border-primary-100 rounded-full shadow-sm mb-8 transition-transform hover:scale-105 cursor-default">
+                <Sparkles className="w-4 h-4 text-primary-500" />
+                <span className="text-sm font-medium text-neutral-800 tracking-wide">The International Student Social Network</span>
+              </div>
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-neutral-900 mb-6 tracking-tight leading-[1.1]">
+                Connect before you go, <br className="hidden md:block" />
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-600 via-primary-500 to-secondary-500">
+                  thrive when you arrive
+                </span>
+              </h2>
+              <p className="text-xl md:text-2xl text-neutral-500 max-w-2xl mx-auto leading-relaxed font-light">
+                More than just a guide—it's your social circle waiting for you at your destination.
+              </p>
+            </ScrollRevealEnhanced>
+          </div>
+
+          <div className="space-y-32 lg:space-y-40">
+            {/* Step 1: Profile */}
+            <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center relative">
+              {/* Text Content */}
+              <ScrollRevealEnhanced direction="right" className="order-2 lg:order-1 relative">
+                {/* Large Watermark Number */}
+                <span className="absolute -top-24 -left-12 text-[12rem] leading-none font-bold text-primary-100 select-none -z-10 font-display">
+                  01
+                </span>
+                
+                <div className="relative z-10 pt-4">
+                  <h3 className="text-3xl md:text-4xl font-bold mb-6 text-neutral-900">Create your student identity</h3>
+                  <p className="text-xl text-neutral-600 leading-relaxed mb-8 font-light">
+                    Build a profile that highlights not just where you're from, but where you're going. Add your university, major, and interests to find your perfect crowd.
+                  </p>
+                  <ul className="space-y-5">
+                    {[
+                      "Verified student status (.edu)",
+                      "Showcase your home city & culture",
+                      "Highlight your study interests"
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-center gap-4 text-lg text-neutral-700 group">
+                        <div className="w-8 h-8 rounded-full bg-primary-50 border border-primary-100 flex items-center justify-center text-primary-600 flex-shrink-0 group-hover:bg-primary-100 transition-colors">
+                          <CheckCircle2 className="w-5 h-5" />
+                        </div>
+                        <span className="font-medium">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </ScrollRevealEnhanced>
+
+              {/* Visual */}
+              <ScrollRevealEnhanced direction="left" className="order-1 lg:order-2 flex justify-center lg:justify-end relative group">
+                <div className="relative z-10 transition-transform duration-700 hover:-translate-y-2">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-primary-200/40 to-transparent rounded-[3rem] blur-3xl transform rotate-6 scale-110 opacity-60" />
+                  <AppMockupFrame className="shadow-2xl">
+                    <div className="bg-neutral-50 h-full p-4 overflow-y-auto hide-scrollbar">
+                      <div className="text-center mb-6 pt-4">
+                        <h4 className="font-bold text-neutral-900">Your Profile</h4>
+                        <p className="text-xs text-neutral-500">Preview</p>
+                      </div>
+                      <StudentProfileCard 
+                        name="Priya Sharma"
+                        country="Mumbai, India"
+                        university="Univ. of Toronto"
+                        major="Computer Science"
+                        interests={["Photography", "Coding", "Cricket", "Travel"]}
+                        image="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop"
+                        matchPercentage={100}
+                      />
+                      <div className="mt-4 p-4 bg-white rounded-xl shadow-sm border border-neutral-100">
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-sm font-bold text-neutral-700">Profile Strength</span>
+                          <span className="text-xs font-bold text-green-600">Excellent</span>
+                        </div>
+                        <div className="w-full h-2 bg-neutral-100 rounded-full overflow-hidden">
+                          <div className="h-full w-[90%] bg-green-500 rounded-full" />
+                        </div>
+                      </div>
+                    </div>
+                  </AppMockupFrame>
+                </div>
+              </ScrollRevealEnhanced>
             </div>
 
-          <div className="grid md:grid-cols-3 gap-12">
-            {/* Step 1 */}
-            <div className="text-center">
-              <StepIllustration 
-                icon={Shield} 
-                color="primary"
-                decorations={<SignUpDecorations />}
-              />
-              <div className="mt-6">
-                <div className="inline-flex items-center justify-center w-10 h-10 bg-primary-100 rounded-full text-primary-700 text-lg font-bold mb-4">
-                  1
-                </div>
-                <h3 className="text-xl font-bold mb-3">Create your profile</h3>
-                <p className="text-neutral-600 leading-relaxed">
-                  Tell us where you're from and where you're going (or already are). Whether you're planning or already studying abroad, we'll connect you with the right people.
-                      </p>
+            {/* Step 2: Connect */}
+            <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center relative">
+              {/* Visual - Left */}
+              <ScrollRevealEnhanced direction="right" className="order-1 flex justify-center lg:justify-start relative group">
+                <div className="relative z-10 transition-transform duration-700 hover:-translate-y-2">
+                  <div className="absolute inset-0 bg-gradient-to-tl from-secondary-200/40 to-transparent rounded-[3rem] blur-3xl transform -rotate-6 scale-110 opacity-60" />
+                  <AppMockupFrame className="shadow-2xl">
+                    <div className="bg-white h-full flex flex-col">
+                      {/* Header */}
+                      <div className="px-4 pt-3 pb-2 flex justify-between items-center border-b border-neutral-100">
+                        <h4 className="font-bold text-xl text-neutral-900">Daily Matches</h4>
+                        <Badge variant="secondary" className="bg-neutral-100 text-neutral-700 hover:bg-neutral-200 text-xs px-2.5 py-1 rounded-md font-normal">New</Badge>
+                      </div>
+                      
+                      {/* Match Card */}
+                      <div className="flex-1 p-4 flex flex-col justify-between">
+                        <div className="relative bg-white rounded-2xl overflow-hidden shadow-sm border border-neutral-100 flex-1 flex flex-col group/card">
+                          {/* Profile Image */}
+                          <div className="relative flex-1 overflow-hidden bg-neutral-100">
+                            <img 
+                              src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop" 
+                              className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105" 
+                              alt="Match" 
+                            />
+                            {/* Text Overlay */}
+                            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent p-4">
+                              <h3 className="text-xl font-bold text-white mb-1">Rahul, 22</h3>
+                              <p className="text-white/95 text-sm flex items-center gap-1.5">
+                                <MapPin className="w-3.5 h-3.5" />
+                                <span>Delhi → Toronto</span>
+                              </p>
+                            </div>
+                          </div>
+                          
+                          {/* Interest Badges */}
+                          <div className="p-4 bg-white">
+                            <div className="flex flex-wrap gap-2 mb-4">
+                              <Badge variant="outline" className="bg-neutral-100 text-neutral-700 border-neutral-200 rounded-full px-3 py-1.5 text-sm font-normal">♫ Music</Badge>
+                              <Badge variant="outline" className="bg-neutral-100 text-neutral-700 border-neutral-200 rounded-full px-3 py-1.5 text-sm font-normal">🏏 Cricket</Badge>
+                              <Badge variant="outline" className="bg-neutral-100 text-neutral-700 border-neutral-200 rounded-full px-3 py-1.5 text-sm font-normal">☕ Coffee</Badge>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Action Buttons */}
+                        <div className="flex gap-6 mt-4 justify-center items-center">
+                          <button 
+                            className="w-14 h-14 rounded-full bg-neutral-100 border border-neutral-200 shadow-sm flex items-center justify-center text-neutral-600 hover:bg-neutral-200 transition-all hover:scale-105 active:scale-95"
+                            aria-label="Pass"
+                          >
+                            <X className="w-6 h-6" strokeWidth={2.5} />
+                          </button>
+                          <button 
+                            className="w-16 h-16 rounded-full bg-gradient-to-br from-teal-400 via-teal-500 to-teal-600 shadow-lg shadow-teal-200/50 flex items-center justify-center text-white transform hover:scale-110 transition-all active:scale-95"
+                            aria-label="Follow"
+                          >
+                            <UserPlus className="w-7 h-7 fill-current" />
+                          </button>
+                        </div>
+                      </div>
                     </div>
+                  </AppMockupFrame>
+                </div>
+              </ScrollRevealEnhanced>
+
+              {/* Text Content - Right */}
+              <ScrollRevealEnhanced direction="left" className="order-2 relative">
+                 {/* Large Watermark Number */}
+                 <span className="absolute -top-24 -left-12 text-[12rem] leading-none font-bold text-secondary-100 select-none -z-10 font-display">
+                  02
+                </span>
+
+                <div className="relative z-10 pt-4">
+                  <h3 className="text-3xl md:text-4xl font-bold mb-6 text-neutral-900">Swipe to find your squad</h3>
+                  <p className="text-xl text-neutral-600 leading-relaxed mb-8 font-light">
+                    No more random Facebook groups. Our smart algorithm matches you with students from your home city who share your destination, major, and vibe.
+                  </p>
+                  <ul className="space-y-5">
+                    {[
+                      "Match by home city & destination",
+                      "Filter by intake year & university",
+                      "Safe, verified connections only"
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-center gap-4 text-lg text-neutral-700 group">
+                        <div className="w-8 h-8 rounded-full bg-secondary-50 border border-secondary-100 flex items-center justify-center text-secondary-600 flex-shrink-0 group-hover:bg-secondary-100 transition-colors">
+                          <CheckCircle2 className="w-5 h-5" />
+                        </div>
+                        <span className="font-medium">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </ScrollRevealEnhanced>
+            </div>
+
+            {/* Step 3: Chat */}
+            <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center relative">
+              {/* Text Content */}
+              <ScrollRevealEnhanced direction="right" className="order-2 lg:order-1 relative">
+                {/* Large Watermark Number */}
+                <span className="absolute -top-24 -left-12 text-[12rem] leading-none font-bold text-accent-100 select-none -z-10 font-display">
+                  03
+                </span>
+
+                <div className="relative z-10 pt-4">
+                  <h3 className="text-3xl md:text-4xl font-bold mb-6 text-neutral-900">Start the conversation</h3>
+                  <p className="text-xl text-neutral-600 leading-relaxed mb-8 font-light">
+                    Break the ice before you even pack your bags. Find roommates, plan flights together, or just get advice from someone who's already there.
+                  </p>
+                  <ul className="space-y-5">
+                    {[
+                      "Direct messaging & Group chats",
+                      "City-specific community channels",
+                      "Real-time advice & support"
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-center gap-4 text-lg text-neutral-700 group">
+                        <div className="w-8 h-8 rounded-full bg-accent-50 border border-accent-100 flex items-center justify-center text-accent-600 flex-shrink-0 group-hover:bg-accent-100 transition-colors">
+                          <CheckCircle2 className="w-5 h-5" />
+                        </div>
+                        <span className="font-medium">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-10">
+                    <Button 
+                      size="lg" 
+                      className="h-14 px-8 text-base font-semibold rounded-xl btn-gradient text-white group shadow-lg shadow-primary-500/20 hover:shadow-xl hover:shadow-primary-500/30 transition-all"
+                      onClick={() => {
+                        trackCTAClick('how_it_works', 'join_waitlist');
+                        scrollToWaitlist();
+                      }}
+                    >
+                      Start Your Journey Now
+                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Button>
                   </div>
-
-            {/* Step 2 */}
-            <div className="text-center">
-              <StepIllustration 
-                icon={Users} 
-                color="secondary"
-                decorations={<MatchingDecorations />}
-              />
-              <div className="mt-6">
-                <div className="inline-flex items-center justify-center w-10 h-10 bg-secondary-100 rounded-full text-secondary-700 text-lg font-bold mb-4">
-                  2
-                    </div>
-                <h3 className="text-xl font-bold mb-3">Connect with your community</h3>
-                <p className="text-neutral-600 leading-relaxed">
-                  Match with students from your home city—those planning to go, currently studying, or already graduated. Get advice from those who've been there, or find travel buddies for your journey.
-                      </p>
-              </div>
-            </div>
-
-            {/* Step 3 */}
-            <div className="text-center">
-              <StepIllustration 
-                icon={MessageCircle} 
-                color="accent"
-                decorations={<ConnectDecorations />}
-              />
-              <div className="mt-6">
-                <div className="inline-flex items-center justify-center w-10 h-10 bg-accent-100 rounded-full text-accent-700 text-lg font-bold mb-4">
-                  3
                 </div>
-                <h3 className="text-xl font-bold mb-3">Get support at every stage</h3>
-                <p className="text-neutral-600 leading-relaxed">
-                  Planning your applications? Get tips from current students. Just arrived? Find roommates and explore together. Already there? Help newcomers and expand your network.
-                </p>
-              </div>
+              </ScrollRevealEnhanced>
+
+              {/* Visual */}
+              <ScrollRevealEnhanced direction="left" className="order-1 lg:order-2 flex justify-center lg:justify-end relative group">
+                <div className="relative z-10 transition-transform duration-700 hover:-translate-y-2">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-accent-200/40 to-transparent rounded-[3rem] blur-3xl transform rotate-6 scale-110 opacity-60" />
+                  <AppMockupFrame className="shadow-2xl">
+                    <ChatPreview />
+                  </AppMockupFrame>
+                </div>
+              </ScrollRevealEnhanced>
             </div>
           </div>
         </div>
       </section>
 
-      {/* LAUNCH GOALS - Pre-Launch Stats */}
-      <section className="section-py bg-white">
-        <div className="container-fluid container-px content-width-lg">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">Building something special</h2>
-            <p className="text-lg text-neutral-600">Join us on the journey to launch</p>
-          </div>
+      {/* LAUNCH GOALS - Bento Grid Redesign */}
+      <section className="section-py layer-shade-2 relative overflow-hidden">
+        {/* Ambient Background */}
+        <div className="absolute inset-0 bg-neutral-50/50 pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-tr from-primary-200/20 via-secondary-200/20 to-accent-200/20 rounded-full blur-3xl -z-10" />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <StatCounter
-              number={1000}
-              label="Waitlist Goal"
-              icon={Users}
-              color="primary"
-            />
-            <StatCounter
-              number={15}
-              suffix="+"
-              label="Target Countries"
-              icon={Globe2}
-              color="secondary"
-            />
-            <StatCounter
-              number={50}
-              suffix="+"
-              label="Partner Universities"
-              icon={GraduationCap}
-              color="accent"
-            />
-            <StatCounter
-              number={2026}
-              label="Launch Year"
-              icon={Sparkles}
-              color="primary"
-                />
-          </div>
+        <div className="container-fluid container-px content-width-lg relative z-10">
+          <ScrollRevealEnhanced>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">Building something special</h2>
+              <p className="text-lg text-neutral-600">Join us on the journey to launch</p>
+            </div>
+          </ScrollRevealEnhanced>
 
-          {/* Progress Bar */}
-          <div className="mt-12 max-w-2xl mx-auto">
-            <div className="bg-neutral-50 rounded-xl p-6 border border-neutral-200">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-sm font-semibold text-neutral-700">Waitlist Progress</span>
-                <span className="text-sm font-bold text-primary-600">Growing daily!</span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            {/* Main Card - Waitlist (Span 7) */}
+            <ScrollRevealEnhanced className="lg:col-span-7 h-full" delay={0}>
+              <div className="h-full relative overflow-hidden rounded-3xl bg-white border border-neutral-100 shadow-xl p-8 md:p-10 flex flex-col justify-between group hover:border-primary-200 transition-all duration-300 hover:shadow-2xl">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-primary-50 to-transparent rounded-bl-full opacity-50 transition-opacity group-hover:opacity-100" />
+                
+                {/* Content */}
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 shadow-sm">
+                      <Users className="w-5 h-5" />
+                    </div>
+                    <span className="font-bold text-primary-600 uppercase tracking-wider text-sm">Community Goal</span>
+                  </div>
+                  
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 mb-4">
+                    <span className="text-6xl md:text-7xl font-bold text-neutral-900 tracking-tight">1,000</span>
+                    <span className="text-xl md:text-2xl text-neutral-500 font-medium">Founding Members</span>
+                  </div>
+                  
+                  <p className="text-neutral-600 text-lg mb-8 max-w-md leading-relaxed">
+                    We're building a curated community of international students. Secure your spot as a founding member before we reach capacity.
+                  </p>
+                </div>
+                
+                {/* Progress Bar Integrated */}
+                <div className="relative z-10 bg-neutral-50/80 backdrop-blur-sm rounded-2xl p-6 border border-neutral-100 group-hover:border-primary-100 transition-colors">
+                  <div className="flex justify-between text-sm mb-3 font-medium">
+                    <span className="text-neutral-700 flex items-center gap-2">
+                      <TrendingUp className="w-4 h-4 text-primary-500" />
+                      Waitlist Progress
+                    </span>
+                    <span className="text-primary-600 animate-pulse">Growing daily!</span>
+                  </div>
+                  <div className="h-4 bg-neutral-200/50 rounded-full overflow-hidden shadow-inner">
+                    <div className="h-full w-[35%] bg-gradient-to-r from-primary-500 via-primary-400 to-secondary-400 rounded-full relative">
+                      <div className="absolute inset-0 bg-white/20 animate-[shimmer_2s_infinite]" />
+                    </div>
+                  </div>
+                  <div className="mt-3 flex justify-between items-center">
+                    <p className="text-xs text-neutral-500">Limited spots available for Fall 2026</p>
+                    <Button variant="link" className="h-auto p-0 text-primary-600 font-semibold hover:text-primary-700" onClick={() => {
+                        trackCTAClick('stats', 'join_waitlist');
+                        scrollToWaitlist();
+                      }}>
+                      Join now <ArrowRight className="w-3 h-3 ml-1" />
+                    </Button>
+                  </div>
+                </div>
               </div>
-              <div className="w-full h-3 bg-neutral-200 rounded-full overflow-hidden">
-                <div className="h-3 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full transition-all duration-1000" style={{ width: '35%' }} />
-              </div>
-              <p className="text-xs text-neutral-500 mt-2 text-center">Join now to secure your founding member status</p>
+            </ScrollRevealEnhanced>
+
+            {/* Side Cards (Span 5) */}
+            <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6 h-full">
+              {/* Global Reach */}
+              <ScrollRevealEnhanced delay={100} className="h-full">
+                <div className="h-full rounded-3xl bg-white border border-neutral-100 shadow-lg p-6 flex items-center gap-5 hover:-translate-y-1 transition-all duration-300 hover:shadow-xl group">
+                  <div className="w-16 h-16 rounded-2xl bg-secondary-50 flex items-center justify-center text-secondary-600 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    <Globe2 className="w-8 h-8" />
+                  </div>
+                  <div>
+                    <div className="text-3xl md:text-4xl font-bold text-neutral-900 mb-1">15+</div>
+                    <div className="text-neutral-600 font-medium">Target Countries</div>
+                    <p className="text-xs text-neutral-400 mt-1">Expanding globally</p>
+                  </div>
+                </div>
+              </ScrollRevealEnhanced>
+
+              {/* Partners */}
+              <ScrollRevealEnhanced delay={200} className="h-full">
+                <div className="h-full rounded-3xl bg-white border border-neutral-100 shadow-lg p-6 flex items-center gap-5 hover:-translate-y-1 transition-all duration-300 hover:shadow-xl group">
+                  <div className="w-16 h-16 rounded-2xl bg-accent-50 flex items-center justify-center text-accent-600 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    <GraduationCap className="w-8 h-8" />
+                  </div>
+                  <div>
+                    <div className="text-3xl md:text-4xl font-bold text-neutral-900 mb-1">50+</div>
+                    <div className="text-neutral-600 font-medium">Partner Universities</div>
+                    <p className="text-xs text-neutral-400 mt-1">Trusted network</p>
+                  </div>
+                </div>
+              </ScrollRevealEnhanced>
+
+              {/* Launch Date - Dark Card */}
+              <ScrollRevealEnhanced delay={300} className="h-full sm:col-span-2 lg:col-span-1">
+                <div className="h-full rounded-3xl bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 text-white shadow-xl p-6 flex items-center gap-5 hover:-translate-y-1 transition-all duration-300 hover:shadow-2xl group border border-white/10">
+                  <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center text-yellow-400 flex-shrink-0 backdrop-blur-sm group-hover:bg-white/20 transition-colors">
+                    <Sparkles className="w-8 h-8" />
+                  </div>
+                  <div>
+                    <div className="text-3xl md:text-4xl font-bold text-white mb-1">2026</div>
+                    <div className="text-neutral-300 font-medium">Official Launch</div>
+                    <div className="flex items-center gap-2 mt-2">
+                      <span className="flex h-2 w-2 rounded-full bg-green-500"></span>
+                      <span className="text-xs text-neutral-400">On schedule</span>
+                    </div>
+                  </div>
+                </div>
+              </ScrollRevealEnhanced>
             </div>
           </div>
         </div>
@@ -340,35 +539,35 @@ const Index = () => {
 
           <div className="max-w-4xl mx-auto">
             {/* Timeline */}
-            <div className="relative">
+            <div className="relative bg-white/85 backdrop-blur-md rounded-3xl border border-neutral-100 shadow-[0_30px_90px_-45px_rgba(15,23,42,0.75)] p-6 sm:p-8 md:p-10">
               {/* Vertical line */}
-              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary-500 via-secondary-500 to-accent-500"></div>
+              <div className="absolute left-8 top-4 bottom-4 w-1 bg-gradient-to-b from-primary-500 via-secondary-500 to-accent-500 rounded-full shadow-[0_0_0_4px_rgba(248,113,113,0.12)]"></div>
 
               {/* Timeline items */}
               <div className="space-y-12">
                 {/* Phase 1 - Current */}
                 <ScrollRevealEnhanced direction="right" delay={0}>
-                  <div className="relative pl-20">
+                  <div className="relative pl-20 group">
                     <div className="absolute left-0 w-16 h-16 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white font-bold shadow-lg">
                       <CheckCircle2 className="w-8 h-8" />
               </div>
-                    <div className="bg-primary-50 rounded-xl p-6 border-2 border-primary-200">
+                    <div className="bg-primary-50/95 rounded-2xl p-6 md:p-7 border border-primary-200 shadow-small transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_26px_70px_-36px_rgba(248,113,113,0.85)]">
                       <div className="flex items-center gap-3 mb-2">
                         <h3 className="text-xl font-bold text-primary-900">Phase 1: Waitlist</h3>
-                        <AnimatedBadge variant="success" size="sm">Active Now</AnimatedBadge>
+                        <AnimatedBadge variant="new" size="sm">Active Now</AnimatedBadge>
                 </div>
                       <p className="text-neutral-700 mb-3">Building our founding community</p>
                       <ul className="space-y-2 text-sm text-neutral-600">
                         <li className="flex items-center gap-2">
-                          <CheckCircle2 className="w-4 h-4 text-green-600 flex-shrink-0" />
+                          <CheckCircle2 className="w-4 h-4 text-primary-600 flex-shrink-0" />
                           <span>Collecting waitlist signups</span>
                         </li>
                         <li className="flex items-center gap-2">
-                          <CheckCircle2 className="w-4 h-4 text-green-600 flex-shrink-0" />
+                          <CheckCircle2 className="w-4 h-4 text-primary-600 flex-shrink-0" />
                           <span>Free guides available now</span>
                         </li>
                         <li className="flex items-center gap-2">
-                          <CheckCircle2 className="w-4 h-4 text-green-600 flex-shrink-0" />
+                          <CheckCircle2 className="w-4 h-4 text-primary-600 flex-shrink-0" />
                           <span>Founding member perks secured</span>
                         </li>
                       </ul>
@@ -378,11 +577,11 @@ const Index = () => {
 
                 {/* Phase 2 - Beta */}
                 <ScrollRevealEnhanced direction="right" delay={100}>
-                  <div className="relative pl-20">
+                  <div className="relative pl-20 group">
                     <div className="absolute left-0 w-16 h-16 rounded-full bg-gradient-to-br from-secondary-400 to-secondary-600 flex items-center justify-center text-white font-bold shadow-lg">
                       2
               </div>
-                    <div className="bg-white rounded-xl p-6 border-2 border-secondary-200">
+                    <div className="bg-white/95 rounded-2xl p-6 md:p-7 border border-secondary-200 shadow-small transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_26px_70px_-36px_rgba(56,189,248,0.85)]">
                       <div className="flex items-center gap-3 mb-2">
                         <h3 className="text-xl font-bold text-neutral-900">Phase 2: Beta Launch</h3>
                         <AnimatedBadge variant="new" size="sm">Summer 2026</AnimatedBadge>
@@ -408,11 +607,11 @@ const Index = () => {
 
                 {/* Phase 3 - Public Launch */}
                 <ScrollRevealEnhanced direction="right" delay={200}>
-                  <div className="relative pl-20">
+                  <div className="relative pl-20 group">
                     <div className="absolute left-0 w-16 h-16 rounded-full bg-gradient-to-br from-accent-400 to-accent-600 flex items-center justify-center text-white font-bold shadow-lg">
                       3
           </div>
-                    <div className="bg-white rounded-xl p-6 border-2 border-accent-200">
+                    <div className="bg-white/95 rounded-2xl p-6 md:p-7 border border-accent-200 shadow-small transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_26px_70px_-36px_rgba(249,115,22,0.85)]">
                       <div className="flex items-center gap-3 mb-2">
                         <h3 className="text-xl font-bold text-neutral-900">Phase 3: Public Launch</h3>
                         <AnimatedBadge variant="warning" size="sm">Fall 2026</AnimatedBadge>
@@ -440,12 +639,13 @@ const Index = () => {
 
             {/* CTA */}
             <div className="mt-12 text-center">
-              <div className="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-2xl p-8 border border-primary-200">
-                <h3 className="text-2xl font-bold mb-3">Want to be part of the journey?</h3>
-                <p className="text-neutral-600 mb-6">Join the waitlist now to secure founding member benefits and early access</p>
+              <div className="relative overflow-hidden bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 rounded-3xl p-8 sm:p-9 shadow-[0_32px_90px_-40px_rgba(248,113,113,0.95)]">
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.65),transparent_55%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.4),transparent_55%)]" />
+                <h3 className="relative text-2xl font-bold mb-3 text-white">Want to be part of the journey?</h3>
+                <p className="relative text-neutral-100 mb-6">Join the waitlist now to secure founding member benefits and early access</p>
                 <Button 
                   size="lg" 
-                  className="btn-gradient text-white group"
+                  className="relative z-10 btn-gradient text-white group shadow-[0_20px_60px_-30px_rgba(15,23,42,0.9)]"
                   onClick={() => {
                     trackCTAClick('roadmap', 'join_waitlist');
                     scrollToWaitlist();
@@ -462,21 +662,8 @@ const Index = () => {
 
       {/* WAITLIST CTA - Compelling & Urgent */}
       <section id="waitlist" className="section-py-lg bg-gradient-to-br from-primary-50 via-white to-secondary-50">
-        <div className="container-fluid container-px content-width text-center">
-          <div className="mb-8">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Join the founding community</h2>
-            <p className="text-xl text-neutral-600 mb-4 max-w-2xl mx-auto">
-              Whether you're planning to study abroad or already there, be among the first 1,000 members. Get exclusive early access, lifetime premium features, and founding member perks.
-            </p>
-            <p className="text-base text-neutral-500 max-w-xl mx-auto">
-              Founding members get priority matching, beta access (Summer 2026), and free premium forever. For prospective and current students. Limited spots available.
-            </p>
-          </div>
-
-          <div className="bg-white p-8 rounded-2xl shadow-xl border-2 border-primary-100 max-w-lg mx-auto">
+        <div className="container-fluid container-px">
           <WaitlistForm />
-        </div>
-
         </div>
       </section>
 
