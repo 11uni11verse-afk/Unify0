@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { SEO } from "@/components/SEO";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
@@ -85,6 +86,18 @@ const FAQ = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO 
+        title="Frequently Asked Questions"
+        description="Find answers to common questions about UnifyO, our features, safety measures, and how we help international students connect."
+        url="https://unify0.com/faq"
+        keywords={[
+          "unifyo faq",
+          "how unifyo works questions",
+          "is unifyo free",
+          "unifyo safety",
+          "student app questions"
+        ]}
+      />
       <Navbar />
       
       {/* Hero Section - Editorial Style matching About page */}

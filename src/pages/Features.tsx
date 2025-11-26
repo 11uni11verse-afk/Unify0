@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import InteractiveFeatureCard from "@/components/InteractiveFeatureCard";
+import { SEO } from "@/components/SEO";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Search, Users, MessageCircle, Video, Heart, Shield, Image, Zap, Calendar, BookOpen, Globe, Award, TrendingUp, Target, ArrowRight, UserPlus, Hash, MapPin } from "lucide-react";
@@ -51,6 +52,19 @@ const Features = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO 
+        title="Features"
+        description="Discover how UnifyO helps you find your people, avoid scams, and build a community before you arrive."
+        url="https://unify0.com/features"
+        keywords={[
+          "find roommates abroad",
+          "verified student profiles",
+          "study abroad group chats",
+          "pre-departure meetups",
+          "international student messaging",
+          "safe student networking"
+        ]}
+      />
       <Navbar />
       
       {/* Hero Section - Editorial Style matching About page */}

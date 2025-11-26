@@ -3,28 +3,47 @@ import { Helmet } from 'react-helmet-async';
 interface SEOProps {
   title: string;
   description: string;
+  keywords?: string[];
   image?: string;
   url?: string;
   type?: string;
+  structuredData?: object;
 }
 
 export const SEO = ({ 
   title, 
   description, 
+  keywords = [],
   image, 
   url,
-  type = 'website' 
+  type = 'website',
+  structuredData
 }: SEOProps) => {
-  const siteUrl = 'https://unifyo.com';
+  const siteUrl = 'https://unify0.com';
   const defaultImage = `${siteUrl}/og-image.jpg`;
   const fullTitle = `${title} | UnifyO`;
   
+  const defaultKeywords = [
+    "international students", 
+    "study abroad", 
+    "student community", 
+    "connect students", 
+    "unifyo", 
+    "global network", 
+    "university students",
+    "study abroad app",
+    "student networking platform"
+  ];
+
+  const allKeywords = [...new Set([...defaultKeywords, ...keywords])].join(", ");
+
   return (
     <Helmet>
       {/* Primary Meta Tags */}
       <title>{fullTitle}</title>
       <meta name="title" content={fullTitle} />
       <meta name="description" content={description} />
+      <meta name="keywords" content={allKeywords} />
       
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={type} />
@@ -51,6 +70,13 @@ export const SEO = ({
       
       {/* Canonical URL */}
       <link rel="canonical" href={url || siteUrl} />
+
+      {/* Structured Data (JSON-LD) */}
+      {structuredData && (
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      )}
     </Helmet>
   );
 };

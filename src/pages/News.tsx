@@ -275,9 +275,16 @@ const News = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO 
-        title="International Student News & Updates | UnifyO"
+        title="International Student News & Updates"
         description="Stay informed with the latest news, visa updates, scholarships, and opportunities for international students worldwide. Your trusted source for student news."
-        url="https://unifyo.com/news"
+        url="https://unify0.com/news"
+        keywords={[
+          "international student news",
+          "study abroad visa updates",
+          "scholarship opportunities news",
+          "work permit news students",
+          "global education news"
+        ]}
       />
       <Navbar />
       

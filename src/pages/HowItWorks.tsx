@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check, Users, Globe, MessageCircle, Zap, UserPlus } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -90,6 +91,18 @@ const HowItWorks = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO 
+        title="How It Works"
+        description="Four simple steps to your global network. Create a profile, get matched, join communities, and stay connected."
+        url="https://unify0.com/how-it-works"
+        keywords={[
+          "how unifyo works",
+          "study abroad matching",
+          "connect with students steps",
+          "international student community app",
+          "student networking process"
+        ]}
+      />
       <Navbar />
       
       {/* Hero Section - Editorial Style matching About page */}

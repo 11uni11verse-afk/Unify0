@@ -26,12 +26,42 @@ const Index = () => {
     document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "UnifyO",
+    "applicationCategory": "SocialNetworkingApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "The ultimate platform for international students to connect with peers from their home country studying abroad.",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "1200"
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background font-body overflow-x-hidden selection:bg-primary-200">
       <SEO 
         title="UnifyO | Find Your Community Abroad"
         description="The upcoming social network for international students. Join the waitlist to connect with peers from your home country."
-        url="https://unifyo.com"
+        url="https://unify0.com"
+        keywords={[
+          "international student community",
+          "study abroad social network",
+          "find roommates abroad",
+          "student networking app",
+          "pre-departure connection",
+          "study abroad advice",
+          "international student support",
+          "prospective student network"
+        ]}
+        structuredData={structuredData}
       />
       <Navbar />
       

@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { SEO } from "@/components/SEO";
 import { Heart, Target, Users, Linkedin, Mail, ArrowRight, Sparkles, Globe, Shield, Zap, CheckCircle2, Quote } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -16,7 +17,7 @@ const About = () => {
     "mainEntity": {
       "@type": "Organization",
       "name": "UnifyO",
-      "url": "https://unifyo.com",
+      "url": "https://unify0.com",
       "description": "Platform for international students to connect with peers from their home country studying abroad",
       "foundingDate": "2024",
       "contactPoint": {
@@ -65,9 +66,19 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageSchema) }}
+      <SEO 
+        title="About Us"
+        description="We're building the support network every international student deserves. Learn about our mission to connect students worldwide."
+        url="https://unify0.com/about"
+        keywords={[
+          "UnifyO mission",
+          "student connection story",
+          "international student founder",
+          "global student network",
+          "study abroad values",
+          "student safety platform"
+        ]}
+        structuredData={aboutPageSchema}
       />
       <Navbar />
       

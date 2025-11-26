@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { SEO } from "@/components/SEO";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -159,6 +160,20 @@ const Guides = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO 
+        title="Free Study Abroad Guides & Checklists"
+        description="Download free, comprehensive guides for student visas, accommodation, scholarships, and pre-departure checklists for 15+ countries."
+        url="https://unify0.com/guides"
+        keywords={[
+          "study abroad checklist",
+          "student visa guide",
+          "international student housing",
+          "study abroad scholarships",
+          "pre-departure checklist",
+          "student accommodation guide",
+          "study abroad resources"
+        ]}
+      />
       <Navbar />
       
       {/* Hero Section - Visually Appealing */}
