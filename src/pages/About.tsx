@@ -83,11 +83,11 @@ const About = () => {
           <div className="mt-4 text-center max-w-4xl mx-auto">
             <ScrollReveal direction="up">
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-foreground mb-4">
-                Your Social Networking Platform for International Students Is Almost Here
+                Bridging Borders, <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">Building Futures</span>
               </h1>
               
               <p className="text-xl sm:text-2xl text-neutral-600 leading-relaxed max-w-3xl mx-auto">
-                Ever landed in a new country and thought, "Where do I even start?" You're not alone. That's exactly why we built UnifyO — the essential platform for international students who want real answers, not corporate waffle.
+                UnifyO was born from the shared struggles of international students. We're on a mission to replace isolation with connection and confusion with clarity.
               </p>
             </ScrollReveal>
           </div>
