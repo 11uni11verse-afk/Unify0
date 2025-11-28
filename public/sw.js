@@ -38,19 +38,19 @@ self.addEventListener('fetch', (event) => {
   // Skip non-GET requests
   if (event.request.method !== 'GET') return;
 
-  event.respondWith(
-    fetch(event.request)
-      .then((response) => {
-        // Cache successful responses
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          // Cache successful responses
         if (response.status === 200) {
-          const responseClone = response.clone();
+            const responseClone = response.clone();
           caches.open(CACHE_NAME).then((cache) => {
             cache.put(event.request, responseClone);
           });
-        }
-        return response;
-      })
-      .catch(() => {
+          }
+          return response;
+        })
+        .catch(() => {
         // Fallback to cache
         return caches.match(event.request);
       })

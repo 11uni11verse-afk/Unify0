@@ -10,19 +10,48 @@ const FAQ = () => {
       items: [
         {
           question: "What is UnifyO?",
-          answer: "UnifyO is a social app for international students. Match with students from your country studying at your destination. Join communities. Chat, meet, and build your network before you land."
+          answer: "UnifyO is a social networking platform for international students that actually gets it. Think of it as your mate who's already been through the chaos and is now sharing the cheat codes. We connect you with students who've walked your path, faced your struggles, and figured out the shortcuts. No corporate speak. No unhelpful FAQs. Just real students helping real students."
         },
         {
-          question: "Is it free?",
-          answer: "Yes! UnifyO is completely free. No hidden fees, no premium tiers. We believe every international student deserves access to a supportive community."
+          question: "When is UnifyO launching?",
+          answer: "Soon. Very soon. We're testing everything to make sure it actually works properly. Join the waitlist at unifyo.in and you'll be the first to know when we launch."
+        },
+        {
+          question: "Is UnifyO free?",
+          answer: "We're building this to help students, not empty your pockets. Core features will be accessible to everyone. No hidden fees, no premium tiers that lock away essential features."
+        },
+        {
+          question: "Who can join UnifyO?",
+          answer: "You're in the right place if you're an Indian student heading abroad for university, you're tired of getting vague advice from random internet forums, you want to connect with real people (not just read blog posts), and you need practical help, not motivational quotes."
         },
         {
           question: "Can I use it before I get my visa?",
-          answer: "Absolutely! Many students join as soon as they're accepted to a university. It's the perfect time to start building connections and asking questions about the visa process."
+          answer: "Absolutely! Many students join as soon as they're accepted to a university. It's the perfect time to start building connections and asking questions about the visa process. The best time to build your network is before you need it."
+        }
+      ]
+    },
+    {
+      title: "Platform & Features",
+      items: [
+        {
+          question: "How is UnifyO different from Facebook groups?",
+          answer: "Facebook groups are great until you need to find that one post from three weeks ago about bank accounts. UnifyO organises information properly, connects you with the right people faster, and doesn't bombard you with unrelated content. We're a single platform where everything is structured and searchable."
         },
         {
-          question: "Who can join?",
-          answer: "UnifyO is for international students only. You'll need a university email address to verify your student status and create an account."
+          question: "What will I get when UnifyO launches?",
+          answer: "You'll get instant access to our growing community, all essential guides unlocked immediately, direct connection with students at your university, and regular updates on everything that matters. Plus, you can connect with students heading to the same university before you even land."
+        },
+        {
+          question: "Will UnifyO help me find accommodation?",
+          answer: "Not directly, but you'll connect with students who can share their experiences with different accommodation options, landlords to avoid, and areas that are actually affordable. Real advice from people who've actually lived there."
+        },
+        {
+          question: "What kind of guides does UnifyO offer?",
+          answer: "We're creating essential guides written by students, for students. Short, practical, and actually useful. Topics include: opening a bank account, getting your National Insurance number, finding part-time work (legal stuff sorted), navigating the NHS, best SIM card deals, and where to find Indian grocery stores near you."
+        },
+        {
+          question: "Can I contribute guides to help other students?",
+          answer: "Absolutely. That's the whole point. We're building this together. If you've figured something out, share it. Help the next person avoid the same confusion."
         }
       ]
     },
@@ -31,7 +60,7 @@ const FAQ = () => {
       items: [
         {
           question: "How do you verify students?",
-          answer: "All users must verify their account with a university email address. This ensures our community is exclusively students and creates a safer environment for everyone."
+          answer: "All users must verify their account with a university email address or enrollment documents. This ensures our community is exclusively students and creates a safer environment for everyone. No scammers, no spam, no bots."
         },
         {
           question: "Is my data safe?",
@@ -44,40 +73,19 @@ const FAQ = () => {
       ]
     },
     {
-      title: "Using the App",
+      title: "Availability & Expansion",
       items: [
         {
-          question: "How does matching work?",
-          answer: "Our algorithm suggests students based on your country, destination university, major, and interests. You can filter matches and connect with students who make sense for your journey."
+          question: "I'm not going to the UK. Can I still use UnifyO?",
+          answer: "Right now we're focusing on students heading to the UK, US, Canada, Australia, and other major destinations since that's where we can provide the most value. But we're planning to expand to more countries based on demand. We currently support 15+ destination countries."
         },
-        {
-          question: "Can I message anyone?",
-          answer: "You can message students you've matched with or who are in your communities. This keeps conversations relevant and reduces spam."
-        },
-        {
-          question: "What are communities?",
-          answer: "Communities are group chats organized by country, university, city, or interests. Join 'Indians at Toronto' or 'Computer Science Students in Boston' to find your people."
-        },
-        {
-          question: "Can I join multiple communities?",
-          answer: "Yes! Join as many communities as you want. Most students are in 3-5 communities based on their country, university, city, and interests."
-        }
-      ]
-    },
-    {
-      title: "Features & Availability",
-      items: [
         {
           question: "Is there a mobile app?",
           answer: "We're launching on web first in Fall 2026, with iOS and Android apps coming shortly after. Join the waitlist to get notified when the apps are available."
         },
         {
           question: "Can I use it after I arrive?",
-          answer: "Absolutely! Many students continue using UnifyO after arriving to stay connected, find roommates, organize meetups, and help incoming students."
-        },
-        {
-          question: "Do you have events and meetups?",
-          answer: "Yes! We organize virtual coffee chats, pre-departure meetups, and arrival day gatherings. Community members also organize their own events."
+          answer: "Absolutely! Many students continue using UnifyO after arriving to stay connected, find roommates, organize meetups, and help incoming students. The community grows stronger when experienced students help newcomers."
         }
       ]
     }

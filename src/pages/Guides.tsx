@@ -174,12 +174,25 @@ const Guides = () => {
           <div className="mt-4 max-w-4xl">
             <ScrollReveal direction="up">
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-4 leading-tight">
-                Free <span className="bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">Guides & Checklists</span>
+                Essential <span className="bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">Guides & Checklists</span>
               </h1>
               
-              <p className="text-xl text-neutral-700 leading-relaxed">
-                Navigate your study abroad journey with confidence using our comprehensive, country-specific guides created by international students who've been in your shoes.
+              <p className="text-xl text-neutral-700 leading-relaxed mb-6">
+                Forget those 40-page PDFs your uni sends. We're creating essential guides as international students need them: <span className="font-semibold">short, practical, and actually useful.</span>
               </p>
+              
+              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl border border-neutral-200 shadow-sm">
+                <p className="text-lg text-neutral-700 mb-4">
+                  I've seen students arrive without half the documents they need. Our essential guides and checklists include everything you need — no guessing, no panic, just a clear path forward.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Visa Documents</span>
+                  <span className="px-3 py-1 bg-secondary-50 text-secondary-700 rounded-full text-sm font-medium">Packing Lists</span>
+                  <span className="px-3 py-1 bg-accent-50 text-accent-700 rounded-full text-sm font-medium">First Week Survival</span>
+                  <span className="px-3 py-1 bg-neutral-100 text-neutral-700 rounded-full text-sm font-medium">Bank Accounts</span>
+                  <span className="px-3 py-1 bg-neutral-100 text-neutral-700 rounded-full text-sm font-medium">Accommodation</span>
+                </div>
+              </div>
             </ScrollReveal>
           </div>
         </div>

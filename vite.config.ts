@@ -16,6 +16,31 @@ export default defineConfig(({ mode }) => ({
       ".ngrok.app",
     ],
   },
+  build: {
+    // Code splitting for better performance
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Vendor chunk for React and core libraries
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          // UI components chunk
+          ui: ['@radix-ui/react-dialog', '@radix-ui/react-slot', '@radix-ui/react-toast'],
+        },
+      },
+    },
+    // Minification settings
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: mode === 'production',
+        drop_debugger: true,
+      },
+    },
+    // Target modern browsers for smaller bundles
+    target: 'es2020',
+    // CSS code splitting
+    cssCodeSplit: true,
+  },
   plugins: [
     react(),
     mode === "development" && componentTagger(),
@@ -23,26 +48,39 @@ export default defineConfig(({ mode }) => ({
       registerType: 'autoUpdate',
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+        // Skip large files from precaching
+        maximumFileSizeToCacheInBytes: 3 * 1024 * 1024, // 3MB
         runtimeCaching: [
           {
-            urlPattern: /^https:\/\/api\.allorigins\.win\/.*/i,
-            handler: 'NetworkFirst',
+            urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
+            handler: 'CacheFirst',
             options: {
-              cacheName: 'news-api-cache',
+              cacheName: 'google-fonts-stylesheets',
               expiration: {
-                maxEntries: 100,
-                maxAgeSeconds: 60 * 60 * 24, // 24 hours
+                maxEntries: 10,
+                maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
               },
             },
           },
           {
-            urlPattern: /^https:\/\/corsproxy\.io\/.*/i,
-            handler: 'NetworkFirst',
+            urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
+            handler: 'CacheFirst',
             options: {
-              cacheName: 'cors-proxy-cache',
+              cacheName: 'google-fonts-webfonts',
               expiration: {
-                maxEntries: 50,
-                maxAgeSeconds: 60 * 60 * 24,
+                maxEntries: 30,
+                maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
+              },
+            },
+          },
+          {
+            urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp)$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'images',
+              expiration: {
+                maxEntries: 60,
+                maxAgeSeconds: 60 * 60 * 24 * 30, // 30 days
               },
             },
           },
@@ -50,10 +88,11 @@ export default defineConfig(({ mode }) => ({
       },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
       manifest: {
-        name: 'UnifyO - International Student News',
-        short_name: 'UnifyO News',
-        description: 'Stay updated with international student news, visa updates, scholarships, and opportunities worldwide.',
-        theme_color: '#000000',
+        name: 'UnifyO - Connect with International Students',
+        short_name: 'UnifyO',
+        description: 'The ultimate platform for international students to connect with peers worldwide.',
+        theme_color: '#2563eb',
+        background_color: '#ffffff',
         icons: [
           {
             src: 'pwa-192x192.png',

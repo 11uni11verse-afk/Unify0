@@ -27,16 +27,19 @@ const StudentProfileCard = ({
       <div className="px-5 pt-5 pb-5">
         {/* Profile Image and Buttons Row */}
         <div className="flex items-start gap-3 mb-4">
-          {/* Profile Image */}
+        {/* Profile Image */}
           <div className="relative flex-shrink-0">
             <div className="relative w-20 h-20 rounded-full overflow-hidden bg-white shadow-sm">
-              <img 
-                src={image} 
-                alt={name}
+             <img 
+              src={image} 
+                alt={`Profile photo of ${name}`}
                 className="w-full h-full object-cover"
-                loading="lazy"
-              />
-              <div className="absolute bottom-0 right-0 bg-green-500 w-4 h-4 rounded-full border-2 border-white" title="Online"></div>
+              loading="lazy"
+                decoding="async"
+                width={80}
+                height={80}
+            />
+              <div className="absolute bottom-0 right-0 bg-green-500 w-4 h-4 rounded-full border-2 border-white" aria-label="Online status"></div>
             </div>
           </div>
 
@@ -46,13 +49,13 @@ const StudentProfileCard = ({
               <div className="relative mr-1.5">
                 <MessageCircle className="w-4 h-4" />
                 <div className="absolute -top-0.5 -right-0.5 bg-green-500 w-2 h-2 rounded-full border border-white"></div>
-              </div>
-              Message
-            </Button>
+        </div>
+            Message
+          </Button>
             <Button size="sm" className="rounded-full bg-primary-500 hover:bg-primary-600 text-white shadow-sm h-9 px-3 flex-1 text-sm">
               <UserPlus className="w-4 h-4 mr-1.5" />
-              Follow
-            </Button>
+            Follow
+          </Button>
           </div>
         </div>
 
@@ -60,18 +63,18 @@ const StudentProfileCard = ({
         <div className="space-y-2">
           <div className="flex items-center gap-2 flex-wrap">
             <h3 className="text-xl font-bold text-neutral-900 flex items-center gap-2">
-              {name}
-              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-blue-500 text-white text-[10px]">
-                ✓
-              </span>
-            </h3>
+                {name}
+                <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-blue-500 text-white text-[10px]">
+                  ✓
+                </span>
+              </h3>
             <span className="text-xs font-bold text-primary-600 bg-primary-50 px-2.5 py-1 rounded-full border border-primary-100">
               {matchPercentage}% Match
             </span>
           </div>
-          <div className="flex items-center text-sm text-neutral-500 gap-1">
-            <MapPin className="w-3.5 h-3.5" />
-            <span>{country}</span>
+              <div className="flex items-center text-sm text-neutral-500 gap-1">
+                <MapPin className="w-3.5 h-3.5" />
+                <span>{country}</span>
           </div>
 
           <div className="flex items-center gap-4 py-3 border-y border-neutral-200 my-3">

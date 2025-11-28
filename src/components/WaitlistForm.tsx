@@ -110,7 +110,7 @@ const WaitlistForm = () => {
       try {
         const { error: supabaseError } = await supabase
           .from('waitlist_entries')
-          .insert([
+          .upsert([
             {
               full_name: formData.fullName,
               email: formData.email,
@@ -121,10 +121,10 @@ const WaitlistForm = () => {
               expectations: formData.expectations,
               source: 'website_waitlist'
             }
-          ]);
+          ], { onConflict: 'email' });
 
         if (supabaseError) throw supabaseError;
-        console.log('✅ Waitlist submission saved to Supabase');
+        console.log('✅ Waitlist submission saved/updated to Supabase');
       } catch (err) {
         console.error('⚠️ Supabase submission failed:', err);
         // Continue to Google Sheets fallback if needed
@@ -224,84 +224,80 @@ const WaitlistForm = () => {
 
   return (
     <div className="w-full">
-      <div className="relative bg-gradient-to-br from-white via-primary-50/40 to-secondary-50/40 rounded-3xl shadow-[0_30px_90px_-30px_rgba(0,0,0,0.2)] border border-primary-100/60 backdrop-blur-sm overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-primary-200/25 to-secondary-200/25 rounded-full blur-3xl -mr-[300px] -mt-[300px] pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-accent-200/25 to-primary-200/25 rounded-full blur-3xl -ml-[250px] -mb-[250px] pointer-events-none"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-r from-secondary-200/20 to-accent-200/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="relative bg-gradient-to-br from-white via-primary-50/40 to-secondary-50/40 rounded-2xl sm:rounded-3xl shadow-[0_20px_60px_-20px_rgba(0,0,0,0.15)] sm:shadow-[0_30px_90px_-30px_rgba(0,0,0,0.2)] border border-primary-100/60 backdrop-blur-sm overflow-hidden">
+        {/* Decorative elements - smaller on mobile */}
+        <div className="absolute top-0 right-0 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-gradient-to-br from-primary-200/25 to-secondary-200/25 rounded-full blur-3xl -mr-[150px] sm:-mr-[300px] -mt-[150px] sm:-mt-[300px] pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[250px] sm:w-[500px] h-[250px] sm:h-[500px] bg-gradient-to-tr from-accent-200/25 to-primary-200/25 rounded-full blur-3xl -ml-[125px] sm:-ml-[250px] -mb-[125px] sm:-mb-[250px] pointer-events-none"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] sm:w-[400px] h-[200px] sm:h-[400px] bg-gradient-to-r from-secondary-200/20 to-accent-200/20 rounded-full blur-3xl pointer-events-none hidden sm:block"></div>
         
         <div className="relative z-10 grid lg:grid-cols-2 gap-0">
           {/* Left Side - Content & Benefits */}
-          <div className="p-8 sm:p-10 md:p-12 lg:p-16 flex flex-col justify-center bg-gradient-to-br from-primary-50/50 via-white/30 to-secondary-50/50 lg:border-r border-primary-100/50">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-secondary-500 mb-6 shadow-lg">
-              <Sparkles className="w-8 h-8 text-white" />
-            </div>
-            
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent leading-tight">
+          <div className="p-5 sm:p-8 md:p-10 lg:p-16 flex flex-col justify-center bg-gradient-to-br from-primary-50/50 via-white/30 to-secondary-50/50 lg:border-r border-b lg:border-b-0 border-primary-100/50">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent leading-tight">
               Join the Founding Community
             </h2>
             
-            <p className="text-lg sm:text-xl text-neutral-700 mb-6 leading-relaxed">
+            <p className="text-base sm:text-lg lg:text-xl text-neutral-700 mb-4 sm:mb-6 leading-relaxed">
               Whether you're planning to study abroad or already there, be among the first <span className="font-bold text-primary-600">1,200+</span> members.
             </p>
 
-            <div className="space-y-4 mb-8">
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-lg bg-primary-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <CheckCircle2 className="w-4 h-4 text-primary-600" />
+            <div className="space-y-3 sm:space-y-4 mb-5 sm:mb-8">
+              <div className="flex items-start gap-2.5 sm:gap-3">
+                <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-lg bg-primary-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary-600" />
                 </div>
                 <div>
-                  <p className="font-semibold text-neutral-900">Exclusive Early Access</p>
-                  <p className="text-sm text-neutral-600">Beta access (Summer 2026) for founding members</p>
+                  <p className="font-semibold text-neutral-900 text-sm sm:text-base">Exclusive Early Access</p>
+                  <p className="text-xs sm:text-sm text-neutral-600">Beta access (Summer 2026) for founding members</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-lg bg-secondary-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <CheckCircle2 className="w-4 h-4 text-secondary-600" />
+              <div className="flex items-start gap-2.5 sm:gap-3">
+                <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-lg bg-secondary-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-secondary-600" />
                 </div>
                 <div>
-                  <p className="font-semibold text-neutral-900">Lifetime Premium Features</p>
-                  <p className="text-sm text-neutral-600">Free premium forever for founding members</p>
+                  <p className="font-semibold text-neutral-900 text-sm sm:text-base">Lifetime Premium Features</p>
+                  <p className="text-xs sm:text-sm text-neutral-600">Free premium forever for founding members</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-lg bg-accent-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <CheckCircle2 className="w-4 h-4 text-accent-600" />
+              <div className="flex items-start gap-2.5 sm:gap-3">
+                <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-lg bg-accent-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent-600" />
                 </div>
                 <div>
-                  <p className="font-semibold text-neutral-900">Priority Matching</p>
-                  <p className="text-sm text-neutral-600">Get matched first when we launch</p>
+                  <p className="font-semibold text-neutral-900 text-sm sm:text-base">Priority Matching</p>
+                  <p className="text-xs sm:text-sm text-neutral-600">Get matched first when we launch</p>
                 </div>
               </div>
             </div>
 
-            <div className="inline-flex items-center px-5 py-3 bg-gradient-to-r from-accent-50 to-orange-50 border-2 border-accent-300 rounded-full shadow-sm">
-              <span className="text-sm font-bold text-accent-700 tracking-wide">Limited to first 5,000 users</span>
+            <div className="inline-flex items-center px-4 sm:px-5 py-2 sm:py-3 bg-gradient-to-r from-accent-50 to-orange-50 border-2 border-accent-300 rounded-full shadow-sm self-start">
+              <span className="text-xs sm:text-sm font-bold text-accent-700 tracking-wide">Limited to first 5,000 users</span>
             </div>
           </div>
 
           {/* Right Side - Form */}
-          <div className="p-8 sm:p-10 md:p-12 lg:p-16 bg-white/60 backdrop-blur-sm">
-            <div className="mb-6">
-              <h3 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">Get Early Access</h3>
-              <p className="text-sm text-neutral-600">
+          <div className="p-5 sm:p-8 md:p-10 lg:p-16 bg-white/60 backdrop-blur-sm">
+            <div className="mb-4 sm:mb-6">
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-neutral-900 mb-1 sm:mb-2">Get Early Access</h3>
+              <p className="text-xs sm:text-sm text-neutral-600">
                 Join <span className="font-bold text-primary-600">1,200+</span> students waiting for launch
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-5">
-              {/* Essential Fields - Horizontal Layout */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+              {/* Essential Fields - Stack on mobile, horizontal on larger screens */}
+              <div className="grid grid-cols-1 gap-3 sm:gap-4 sm:grid-cols-2">
               {/* Full Name Field */}
               <div className="relative group">
                 <Label 
                   htmlFor="fullName" 
-                  className="flex items-center gap-2 text-sm font-semibold text-neutral-700 mb-2"
+                  className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold text-neutral-700 mb-1.5 sm:mb-2"
                 >
-                  <div className={`w-5 h-5 rounded-md flex items-center justify-center transition-colors ${
+                  <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-md flex items-center justify-center transition-colors ${
                     focusedField === 'fullName' ? 'bg-primary-100' : 'bg-neutral-100'
                   }`}>
-                    <User className={`w-3.5 h-3.5 transition-colors ${
+                    <User className={`w-3 h-3 sm:w-3.5 sm:h-3.5 transition-colors ${
                       focusedField === 'fullName' ? 'text-primary-600' : 'text-neutral-500'
                     }`} />
                   </div>
@@ -314,7 +310,7 @@ const WaitlistForm = () => {
                   onFocus={() => setFocusedField('fullName')}
                   onBlur={() => setFocusedField(null)}
                   required
-                  className={`h-12 bg-white border-2 transition-all duration-200 ${
+                  className={`h-11 sm:h-12 bg-white border-2 transition-all duration-200 text-sm sm:text-base ${
                     errors.fullName 
                       ? 'border-destructive focus-visible:ring-destructive bg-red-50' 
                       : validFields.fullName
@@ -326,14 +322,14 @@ const WaitlistForm = () => {
                   placeholder="Your full name"
                 />
                 {errors.fullName && (
-                  <p className="text-xs text-destructive mt-1.5 flex items-center gap-1 animate-fade-in">
-                    <AlertCircle className="w-3 h-3" />
+                  <p className="text-[10px] sm:text-xs text-destructive mt-1 sm:mt-1.5 flex items-center gap-1 animate-fade-in">
+                    <AlertCircle className="w-3 h-3 flex-shrink-0" />
                     {errors.fullName}
                   </p>
                 )}
                 {validFields.fullName && !errors.fullName && (
-                  <p className="text-xs text-green-600 mt-1.5 flex items-center gap-1 animate-fade-in">
-                    <CheckCircle2 className="w-3 h-3" />
+                  <p className="text-[10px] sm:text-xs text-green-600 mt-1 sm:mt-1.5 flex items-center gap-1 animate-fade-in">
+                    <CheckCircle2 className="w-3 h-3 flex-shrink-0" />
                     Looks good!
                   </p>
                 )}
@@ -343,12 +339,12 @@ const WaitlistForm = () => {
               <div className="relative group">
                 <Label 
                   htmlFor="email" 
-                  className="flex items-center gap-2 text-sm font-semibold text-neutral-700 mb-2"
+                  className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold text-neutral-700 mb-1.5 sm:mb-2"
                 >
-                  <div className={`w-5 h-5 rounded-md flex items-center justify-center transition-colors ${
+                  <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-md flex items-center justify-center transition-colors ${
                     focusedField === 'email' ? 'bg-primary-100' : 'bg-neutral-100'
                   }`}>
-                    <Mail className={`w-3.5 h-3.5 transition-colors ${
+                    <Mail className={`w-3 h-3 sm:w-3.5 sm:h-3.5 transition-colors ${
                       focusedField === 'email' ? 'text-primary-600' : 'text-neutral-500'
                     }`} />
                   </div>
@@ -362,7 +358,7 @@ const WaitlistForm = () => {
                   onFocus={() => setFocusedField('email')}
                   onBlur={() => setFocusedField(null)}
                   required
-                  className={`h-12 bg-white border-2 transition-all duration-200 ${
+                  className={`h-11 sm:h-12 bg-white border-2 transition-all duration-200 text-sm sm:text-base ${
                     errors.email 
                       ? 'border-destructive focus-visible:ring-destructive bg-red-50' 
                       : validFields.email
@@ -374,14 +370,14 @@ const WaitlistForm = () => {
                   placeholder="your.email@example.com"
                 />
                 {errors.email && (
-                  <p className="text-xs text-destructive mt-1.5 flex items-center gap-1 animate-fade-in">
-                    <AlertCircle className="w-3 h-3" />
+                  <p className="text-[10px] sm:text-xs text-destructive mt-1 sm:mt-1.5 flex items-center gap-1 animate-fade-in">
+                    <AlertCircle className="w-3 h-3 flex-shrink-0" />
                     {errors.email}
                   </p>
                 )}
                 {validFields.email && !errors.email && (
-                  <p className="text-xs text-green-600 mt-1.5 flex items-center gap-1 animate-fade-in">
-                    <CheckCircle2 className="w-3 h-3" />
+                  <p className="text-[10px] sm:text-xs text-green-600 mt-1 sm:mt-1.5 flex items-center gap-1 animate-fade-in">
+                    <CheckCircle2 className="w-3 h-3 flex-shrink-0" />
                     Valid email address
                   </p>
                 )}
@@ -394,11 +390,13 @@ const WaitlistForm = () => {
                 <button
                   type="button"
                   className="w-full py-3 px-4 text-left text-primary-600 hover:text-primary-700 bg-transparent hover:bg-primary-50/30 border border-primary-200/60 hover:border-primary-300/80 rounded-xl transition-all duration-200 group"
+                  aria-expanded={showExtendedForm}
+                  aria-label="Help us personalize your experience - optional fields"
                 >
                   <span className="flex items-center justify-center gap-2 font-medium text-sm">
-                    <Sparkles className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
+                    <Sparkles className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
                     Help us personalize your experience (optional)
-                    <ChevronDown className={`w-4 h-4 opacity-70 group-hover:opacity-100 transition-all duration-200 ${showExtendedForm ? 'rotate-180' : ''}`} />
+                    <ChevronDown className={`w-4 h-4 opacity-70 group-hover:opacity-100 transition-all duration-200 ${showExtendedForm ? 'rotate-180' : ''}`} aria-hidden="true" />
                   </span>
                 </button>
               </Collapsible.Trigger>
@@ -507,21 +505,22 @@ const WaitlistForm = () => {
             <Button 
               type="submit" 
               size="lg" 
-              className="w-full h-12 text-base font-bold relative overflow-hidden group shadow-[0_8px_16px_-4px_rgba(59,130,246,0.4)] hover:shadow-[0_12px_24px_-6px_rgba(59,130,246,0.5)] transition-all duration-300" 
+              className="w-full h-11 sm:h-12 text-sm sm:text-base font-bold relative overflow-hidden group shadow-[0_8px_16px_-4px_rgba(59,130,246,0.4)] hover:shadow-[0_12px_24px_-6px_rgba(59,130,246,0.5)] transition-all duration-300" 
               disabled={isSubmitting}
             >
               {isSubmitting ? (
                 <>
                   <span className="opacity-0">Secure Your Spot - Join Free</span>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <Loader2 className="w-5 h-5 animate-spin" />
+                    <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" />
                   </div>
                 </>
               ) : (
                 <>
-                  <span className="relative z-10 flex items-center gap-2">
-                    Secure Your Spot - Join Free
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <span className="relative z-10 flex items-center gap-1.5 sm:gap-2">
+                    <span className="hidden sm:inline">Secure Your Spot - Join Free</span>
+                    <span className="sm:hidden">Join Free</span>
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-primary-600 via-secondary-600 to-primary-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </>
@@ -529,14 +528,14 @@ const WaitlistForm = () => {
             </Button>
 
               {/* Footer Info */}
-              <div className="space-y-2.5 pt-1">
-                <p className="text-xs sm:text-sm text-neutral-600">
+              <div className="space-y-2 sm:space-y-2.5 pt-1">
+                <p className="text-[10px] sm:text-xs lg:text-sm text-neutral-600">
                   By joining, you agree to receive updates about our launch.
                 </p>
-                <div className="flex items-center gap-2 text-xs font-medium text-primary-700 bg-primary-50 py-2 px-3 sm:px-4 rounded-xl border border-primary-100">
-                  <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
-                  <span>
-                    <span className="font-bold">What happens next:</span> Instant confirmation → Early access invite → Connect with students
+                <div className="flex items-start sm:items-center gap-2 text-[10px] sm:text-xs font-medium text-primary-700 bg-primary-50 py-2 px-3 sm:px-4 rounded-lg sm:rounded-xl border border-primary-100">
+                  <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0 mt-0.5 sm:mt-0" />
+                  <span className="leading-relaxed">
+                    <span className="font-bold">What happens next:</span> <span className="hidden sm:inline">Instant confirmation → Early access invite → Connect with students</span><span className="sm:hidden">Confirmation → Early access → Connect</span>
                   </span>
                 </div>
               </div>

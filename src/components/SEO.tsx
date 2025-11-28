@@ -16,7 +16,7 @@ export const SEO = ({
   type = 'website' 
 }: SEOProps) => {
   const siteUrl = 'https://unifyo.com';
-  const defaultImage = `${siteUrl}/og-image.jpg`;
+  const defaultImage = `${siteUrl}/logo.png`;
   const fullTitle = `${title} | UnifyO`;
   
   return (

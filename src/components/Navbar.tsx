@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import UnifyOLogo from "@/components/UnifyOLogo";
-import SkipToContent from "@/components/SkipToContent";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,25 +26,36 @@ const Navbar = () => {
     setIsOpen(false);
   }, [location.pathname]);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   return (
     <>
-      <SkipToContent />
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${
-        scrolled 
-          ? "bg-card/95 backdrop-blur-lg border-border shadow-lg" 
-          : "bg-white/80 backdrop-blur-sm border-neutral-200"
-      }`} role="navigation" aria-label="Main navigation">
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 opacity-0 transition-opacity duration-300" 
-           style={{ opacity: scrolled ? 1 : 0 }} />
-      <div className="container-fluid">
-        <div className="flex justify-between items-center h-16 sm:h-18">
+      <nav className={`fixed top-0 w-full z-[100] transition-all duration-300 border-b ${
+      scrolled 
+        ? "bg-card/95 backdrop-blur-lg border-border shadow-lg" 
+        : "bg-white/80 backdrop-blur-sm border-neutral-200"
+    }`} role="navigation" aria-label="Main navigation">
+    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 opacity-0 transition-opacity duration-300" 
+         style={{ opacity: scrolled ? 1 : 0 }} />
+    <div className="container-fluid container-px relative z-10">
+      <div className="flex justify-between items-center h-16 sm:h-18">
           <Link to="/" className="flex items-center space-x-2.5 group relative">
             <div className="group-hover:scale-105 transition-transform duration-300">
               <UnifyOLogo size={42} className="shadow-md" />
             </div>
             <span className="text-xl font-bold tracking-tight text-[#1a7bb9] group-hover:text-[#1565a0] transition-colors">
               UnifyO
-            </span>
+              </span>
           </Link>
 
           {/* Desktop Menu - Right aligned */}
@@ -82,18 +92,23 @@ const Navbar = () => {
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors"
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors relative z-50"
+          aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={isOpen}
+        >
+          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
         </div>
 
-          {/* Mobile Menu - Improved touch targets */}
+      </div>
+      
+      {/* Mobile Menu - Full screen overlay with solid background */}
         {isOpen && (
-          <div className="md:hidden py-4 space-y-2 border-t border-border animate-fade-in max-h-[calc(100vh-5rem)] overflow-y-auto">
+        <div className="md:hidden fixed inset-x-0 top-16 bottom-0 bg-white z-50 overflow-y-auto animate-fade-in shadow-xl">
+          <div className="container-fluid py-4 space-y-2">
             <Link
               to="/"
               className={`block px-4 py-3 rounded-lg transition-colors min-h-[48px] flex items-center ${isActive('/') ? 'bg-primary/10 text-primary font-semibold' : 'text-foreground hover:bg-muted'}`}
@@ -143,7 +158,7 @@ const Navbar = () => {
             >
               FAQ
             </Link>
-            <div className="px-4 pt-2">
+            <div className="pt-4 pb-8">
               <Button 
                 className="w-full h-12" 
                 variant="accent"
@@ -160,9 +175,9 @@ const Navbar = () => {
                 Get Early Access
               </Button>
             </div>
+            </div>
           </div>
         )}
-      </div>
     </nav>
     </>
   );

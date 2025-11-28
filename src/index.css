@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap');
+/* Fonts are loaded asynchronously in index.html for better mobile performance */
+/* Fallback to system fonts if Google Fonts haven't loaded yet */
 
 @tailwind base;
 @tailwind components;
@@ -67,17 +68,17 @@
     --accent: var(--accent-500);
     --accent-foreground: 42 100% 10%;
 
-    /* Neutrals: Cool Grays for Modern Tech Feel */
+    /* Neutrals: Improved Contrast for Accessibility */
     --neutral-50: 210 20% 98%;
     --neutral-100: 210 15% 96%;
-    --neutral-200: 210 12% 92%;
-    --neutral-300: 210 10% 88%;
-    --neutral-400: 210 8% 70%;
-    --neutral-500: 210 6% 55%;
-    --neutral-600: 210 8% 40%;
-    --neutral-700: 210 12% 30%;
-    --neutral-800: 210 16% 20%;
-    --neutral-900: 210 20% 12%;
+    --neutral-200: 210 12% 90%;
+    --neutral-300: 210 10% 82%;
+    --neutral-400: 210 8% 58%;
+    --neutral-500: 210 8% 45%;
+    --neutral-600: 210 10% 35%;
+    --neutral-700: 210 12% 25%;
+    --neutral-800: 210 16% 18%;
+    --neutral-900: 210 20% 10%;
 
     --muted: var(--neutral-100);
     --muted-foreground: var(--neutral-500);
@@ -238,9 +239,10 @@
       0 24px 48px -12px rgba(15, 23, 42, 0.12);
   }
 
-  /* Interactive Shadows */
+  /* Interactive Shadows - GPU Accelerated */
   .shadow-hover {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow;
   }
 
   .shadow-hover:hover {
@@ -248,7 +250,7 @@
       0 10px 15px -3px rgba(15, 23, 42, 0.1),
       0 4px 6px -2px rgba(15, 23, 42, 0.05),
       0 20px 25px -5px rgba(15, 23, 42, 0.1);
-    transform: translateY(-2px);
+    transform: translate3d(0, -2px, 0);
   }
 
   /* Container Fluid - Standard width constraint */
@@ -266,7 +268,7 @@
     box-shadow: var(--shadow-small);
   }
 
-  /* Elevated card - Shade 3 */
+  /* Elevated card - Shade 3 - GPU Accelerated */
   .card-elevated {
     background: #ffffff;
     border: 1px solid hsl(var(--neutral-100));
@@ -274,7 +276,8 @@
     box-shadow: 
       0 4px 6px -1px rgba(15, 23, 42, 0.05),
       0 10px 15px -3px rgba(15, 23, 42, 0.05);
-    transition: all 0.3s ease;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    will-change: transform, box-shadow;
   }
 
   .card-elevated:hover {
@@ -282,7 +285,7 @@
     box-shadow: 
       0 10px 15px -3px rgba(15, 23, 42, 0.08),
       0 20px 25px -5px rgba(15, 23, 42, 0.08);
-    transform: translateY(-2px);
+    transform: translate3d(0, -2px, 0);
   }
 
   /* Premium card with gradient */
@@ -312,92 +315,99 @@
   }
 }
 
-/* Purposeful Animations */
+/* Purposeful Animations - GPU Accelerated */
 @keyframes reveal-up {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translate3d(0, 20px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
 .reveal-up {
   animation: reveal-up 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  will-change: transform, opacity;
 }
 
 @keyframes scale-in {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+  from { opacity: 0; transform: scale3d(0.95, 0.95, 1); }
+  to { opacity: 1; transform: scale3d(1, 1, 1); }
 }
 
 .scale-in {
   animation: scale-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  will-change: transform, opacity;
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--primary-500), 0.4); }
-  50% { box-shadow: 0 0 0 8px rgba(var(--primary-500), 0); }
+  0%, 100% { opacity: 1; transform: scale3d(1, 1, 1); }
+  50% { opacity: 0.8; transform: scale3d(1.02, 1.02, 1); }
 }
 
 .pulse-glow {
   animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  will-change: transform, opacity;
 }
 
 @keyframes float {
   0%, 100% { 
-    transform: translateY(0) translateX(0);
+    transform: translate3d(0, 0, 0);
     opacity: 0.6;
   }
   50% { 
-    transform: translateY(-20px) translateX(10px);
+    transform: translate3d(10px, -20px, 0);
     opacity: 1;
   }
 }
 
 .animate-float {
   animation: float 3s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
 @keyframes slide-in-right {
   from {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translate3d(30px, 0, 0);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 .animate-slide-in-right {
   animation: slide-in-right 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  will-change: transform, opacity;
 }
 
 @keyframes slide-in-left {
   from {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translate3d(-30px, 0, 0);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 .animate-slide-in-left {
   animation: slide-in-left 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  will-change: transform, opacity;
 }
 
 @keyframes confetti-fall {
   0% {
-    transform: translateY(0) rotate(0deg);
+    transform: translate3d(0, 0, 0) rotate(0deg);
     opacity: 1;
   }
   100% {
-    transform: translateY(100vh) rotate(720deg);
+    transform: translate3d(0, 100vh, 0) rotate(720deg);
     opacity: 0;
   }
 }
 
 .animate-confetti-fall {
   animation: confetti-fall 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  will-change: transform, opacity;
   }
 
 @keyframes success-bounce {
@@ -497,6 +507,23 @@
   background-size: 200% 100%;
 }
 
+/* Typing indicator animation - GPU accelerated */
+@keyframes typing-dot {
+  0%, 100% { 
+    opacity: 0.4;
+    transform: translate3d(0, 0, 0);
+  }
+  50% { 
+    opacity: 1;
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+.animate-typing-dot {
+  animation: typing-dot 0.8s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
 .animate-checkmark-draw {
   stroke-dasharray: 100;
   animation: checkmark-draw 0.6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
@@ -583,19 +610,21 @@
   background-color: hsl(var(--neutral-200));
 }
 
-/* Interactive Elements */
+/* Interactive Elements - GPU Accelerated */
 .interactive-card {
-  @apply transition-all duration-300 ease-out;
+  @apply duration-300 ease-out;
   box-shadow: 
     inset 0 1px 0 rgba(255, 255, 255, 0.15),
     0 3px 6px rgba(0, 0, 0, 0.15);
+  transition: box-shadow 0.3s ease-out, transform 0.3s ease-out;
+  will-change: transform, box-shadow;
   }
 
 .interactive-card:hover {
   box-shadow: 
     inset 0 2px 0 rgba(255, 255, 255, 0.2),
     0 6px 12px rgba(0, 0, 0, 0.2);
-  transform: translateY(-2px);
+  transform: translate3d(0, -2px, 0);
 }
 
 .interactive-icon {
@@ -606,7 +635,7 @@
   @apply scale-110;
 }
 
-/* Button Enhancements */
+/* Button Enhancements - GPU Accelerated */
 .btn-gradient {
   background: linear-gradient(to bottom, 
     hsl(var(--primary-400)), 
@@ -615,7 +644,9 @@
   box-shadow: 
     inset 0 1px 0 rgba(255, 255, 255, 0.3),
     0 2px 4px rgba(0, 0, 0, 0.15);
-  @apply transition-all duration-300;
+  @apply duration-300;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
+  will-change: transform, box-shadow;
   }
 
 .btn-gradient:hover {
@@ -626,11 +657,11 @@
   box-shadow: 
     inset 0 1px 0 rgba(255, 255, 255, 0.4),
     0 4px 8px rgba(0, 0, 0, 0.2);
-  @apply -translate-y-0.5;
+  transform: translate3d(0, -2px, 0);
 }
 
 .btn-gradient:active {
-  @apply translate-y-0;
+  transform: translate3d(0, 0, 0);
   box-shadow: 
     inset 0 1px 0 rgba(255, 255, 255, 0.2),
     0 1px 2px rgba(0, 0, 0, 0.15);

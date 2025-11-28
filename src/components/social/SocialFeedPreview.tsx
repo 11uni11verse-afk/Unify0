@@ -87,16 +87,16 @@ const SocialFeedPreview = ({ posts = defaultPosts, className }: SocialFeedPrevie
 
           {/* Post Actions */}
           <div className="px-4 py-3 border-t border-neutral-100 flex items-center gap-6">
-            <button className="flex items-center gap-2 text-neutral-600 hover:text-primary-600 transition-colors group">
-              <Heart size={18} className="group-hover:fill-primary-600 transition-all" />
+            <button className="flex items-center gap-2 text-neutral-600 hover:text-primary-600 transition-colors group" aria-label={`Like post, ${post.likes} likes`}>
+              <Heart size={18} className="group-hover:fill-primary-600 transition-all" aria-hidden="true" />
               <span className="text-sm font-medium">{post.likes}</span>
             </button>
-            <button className="flex items-center gap-2 text-neutral-600 hover:text-primary-600 transition-colors">
-              <MessageCircle size={18} />
+            <button className="flex items-center gap-2 text-neutral-600 hover:text-primary-600 transition-colors" aria-label={`Comment on post, ${post.comments} comments`}>
+              <MessageCircle size={18} aria-hidden="true" />
               <span className="text-sm font-medium">{post.comments}</span>
             </button>
-            <button className="flex items-center gap-2 text-neutral-600 hover:text-primary-600 transition-colors ml-auto">
-              <Share2 size={18} />
+            <button className="flex items-center gap-2 text-neutral-600 hover:text-primary-600 transition-colors ml-auto" aria-label="Share post">
+              <Share2 size={18} aria-hidden="true" />
             </button>
           </div>
         </div>

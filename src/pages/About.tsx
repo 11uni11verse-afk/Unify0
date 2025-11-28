@@ -83,13 +83,63 @@ const About = () => {
           <div className="mt-4 text-center max-w-4xl mx-auto">
             <ScrollReveal direction="up">
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-foreground mb-4">
-                We're building the support network every international student deserves
+                Your Social Networking Platform for International Students Is Almost Here
               </h1>
               
               <p className="text-xl sm:text-2xl text-neutral-600 leading-relaxed max-w-3xl mx-auto">
-                Because moving countries to chase your dreams shouldn't mean doing it alone.
+                Ever landed in a new country and thought, "Where do I even start?" You're not alone. That's exactly why we built UnifyO — the essential platform for international students who want real answers, not corporate waffle.
               </p>
             </ScrollReveal>
+          </div>
+            </div>
+      </section>
+
+      {/* What Makes UnifyO Different */}
+      <section className="py-12 sm:py-16 bg-white">
+        <div className="container-fluid content-width-lg container-px">
+          <ScrollRevealEnhanced direction="up">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl sm:text-5xl font-bold text-neutral-900 mb-4">
+                What Makes UnifyO Different?
+              </h2>
+              <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
+                We're not another boring university portal that tells you to "check the website" for everything. UnifyO is a social networking platform for students that actually gets it.
+              </p>
+            </div>
+          </ScrollRevealEnhanced>
+          
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <ScrollRevealEnhanced direction="left">
+              <div className="space-y-6">
+                <p className="text-xl text-neutral-700 leading-relaxed">
+                  Think of it as your mate who's already been through the chaos and is now sharing the cheat codes.
+                </p>
+                <p className="text-xl text-neutral-700 leading-relaxed">
+                  We connect you with students who've walked your path, faced your struggles, and figured out the shortcuts.
+                </p>
+                <div className="p-6 bg-primary-50 border-l-4 border-primary-500 rounded-r-xl">
+                  <p className="text-lg font-semibold text-primary-900">
+                    No corporate speak. No unhelpful FAQs. Just real students helping real students.
+                  </p>
+                </div>
+              </div>
+            </ScrollRevealEnhanced>
+            
+            <ScrollRevealEnhanced direction="right" delay={200}>
+              <div className="bg-neutral-50 p-8 rounded-2xl border border-neutral-200">
+                <h3 className="text-2xl font-bold mb-6 text-neutral-900">Why International Students Need This Right Now</h3>
+                <div className="space-y-4 text-lg text-neutral-600">
+                  <p>Here's what nobody tells you about studying abroad: <span className="font-semibold text-neutral-900">The information is scattered everywhere.</span></p>
+                  <ul className="space-y-2 ml-4">
+                    <li>• One WhatsApp group says one thing</li>
+                    <li>• A Facebook page says another</li>
+                    <li>• Your university email is buried under 47 unread messages</li>
+                  </ul>
+                  <p>And you're left piecing together information like some kind of detective.</p>
+                  <p className="font-semibold text-primary-600">UnifyO changes that.</p>
+                </div>
+              </div>
+            </ScrollRevealEnhanced>
           </div>
             </div>
       </section>

@@ -18,9 +18,9 @@
     <meta property="og:url" content="https://unifyo.com/" />
     <meta property="og:title" content="UnifyO - Connect with International Students Worldwide" />
     <meta property="og:description" content="Find and connect with international students from your home country studying in your dream destination. Build your global student network today." />
-    <meta property="og:image" content="https://unifyo.com/og-image.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image" content="https://unifyo.com/logo.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
     <meta property="og:locale" content="en_US" />
     
     <!-- Twitter Card -->
@@ -29,19 +29,47 @@
     <meta name="twitter:creator" content="@unifyo" />
     <meta name="twitter:title" content="UnifyO - Connect with International Students Worldwide" />
     <meta name="twitter:description" content="Find and connect with international students from your home country studying in your dream destination. Build your global student network today." />
-    <meta name="twitter:image" content="https://unifyo.com/twitter-image.jpg" />
+    <meta name="twitter:image" content="https://unifyo.com/logo.png" />
     
     <!-- Favicon & App Icons -->
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
+    <link rel="shortcut icon" type="image/png" href="/logo.png" />
     <link rel="manifest" href="/site.webmanifest" />
     
-    <!-- Preconnect & Preload -->
+    <!-- DNS Prefetch & Preconnect for Performance -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preconnect" href="https://images.unsplash.com">
+    
+    <!-- Critical CSS inline for above-the-fold content -->
+    <style>
+      /* Critical CSS for faster FCP - Expanded for mobile */
+      *,*::before,*::after{box-sizing:border-box}
+      html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+      body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;background:#fcfcfd}
+      #root{min-height:100vh}
+      /* Skip link - accessible */
+      .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999}
+      .skip-link:focus{position:fixed;left:1rem;top:1rem;width:auto;height:auto;padding:1rem 1.5rem;overflow:visible;background:#2563eb;color:#fff;border-radius:0.5rem;font-weight:600;text-decoration:none;outline:4px solid rgba(37,99,235,0.3)}
+      /* Loading state */
+      .loading-skeleton{background:linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%);background-size:200% 100%;animation:shimmer 1.5s infinite}
+      @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+      /* Navbar placeholder */
+      nav{height:64px;background:#fff;border-bottom:1px solid #e5e5e5}
+      /* Hero section placeholder */
+      .hero-placeholder{padding:2rem 1rem;min-height:50vh}
+      @media(min-width:1024px){.hero-placeholder{padding:4rem 2rem}}
+    </style>
+    
+    <!-- Non-render-blocking font loading -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"></noscript>
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -59,20 +87,14 @@
     }
     </script>
     
-    <!-- Google Analytics -->
-    <!-- TODO: Replace GA_MEASUREMENT_ID with your actual Measurement ID (G-XXXXXXXXXX) -->
-    <!-- Get it from: Google Analytics → Admin → Data Streams → Web Stream -->
-    <!-- Or set VITE_GA_ID in .env file and update this script to use it -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XFTNJCD2LM"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'GA_MEASUREMENT_ID');
+      gtag('config', 'G-XFTNJCD2LM');
     </script>
-    
-    <!-- CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   </head>
 
   <body>

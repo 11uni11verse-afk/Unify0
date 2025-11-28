@@ -105,8 +105,9 @@ const BottomSheet = ({
             <button
               onClick={onClose}
               className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-neutral-100 transition-colors"
+              aria-label="Close dialog"
             >
-              <X className="w-5 h-5 text-neutral-600" />
+              <X className="w-5 h-5 text-neutral-600" aria-hidden="true" />
             </button>
           </div>
         )}

@@ -34,16 +34,24 @@ const AppMockupFrame = ({ children, device = "phone", className }: AppMockupFram
   }
 
   return (
-    <div className={cn("relative w-full max-w-sm mx-auto", className)}>
-      {/* Phone frame */}
-      <div className="relative bg-neutral-900 rounded-[2.5rem] p-3 shadow-2xl">
+    <div className={cn("relative w-full max-w-sm mx-auto", className)} style={{ filter: 'drop-shadow(0 25px 25px rgb(0 0 0 / 0.15))' }}>
+      {/* Phone frame - outer bezel */}
+      <div className="relative bg-neutral-900 rounded-[2.5rem] p-[12px]">
         {/* Notch */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-7 bg-neutral-900 rounded-b-3xl z-10"></div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-7 bg-neutral-900 rounded-b-3xl z-20"></div>
         
-        {/* Screen */}
-        <div className="relative bg-background rounded-[2rem] overflow-hidden shadow-inner">
+        {/* Screen bezel - creates the dark border around screen */}
+        <div className="relative rounded-[1.75rem] overflow-hidden bg-neutral-900">
+          {/* Screen content area */}
+          <div 
+            className="relative rounded-[1.75rem] overflow-hidden"
+            style={{ 
+              margin: '1px',
+              backgroundColor: '#ffffff',
+            }}
+          >
           {/* Status bar */}
-          <div className="bg-background px-6 py-2 flex items-center justify-between text-xs text-neutral-600">
+            <div className="bg-white px-6 py-2 flex items-center justify-between text-xs text-neutral-600 relative z-10">
             <span>9:41</span>
             <div className="flex items-center gap-1">
               <div className="w-4 h-3 border border-neutral-400 rounded-sm relative">
@@ -52,18 +60,16 @@ const AppMockupFrame = ({ children, device = "phone", className }: AppMockupFram
             </div>
           </div>
           
-          {/* Content */}
-          <div className="aspect-[9/16] overflow-y-auto scrollbar-hide">
+            {/* Content wrapper */}
+            <div className="aspect-[9/16] overflow-hidden">
             {children}
+            </div>
           </div>
         </div>
         
         {/* Home indicator */}
-        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-neutral-700 rounded-full"></div>
+        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-neutral-700 rounded-full z-20"></div>
       </div>
-      
-      {/* Shadow */}
-      <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[80%] h-6 bg-neutral-900/30 blur-xl rounded-full"></div>
     </div>
   );
 };
